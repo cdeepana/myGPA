@@ -15,9 +15,9 @@ export class HomepageComponent implements OnInit {
 
   getData(){
     console.log("component clicked");
-    this.TestingService.getData().subscribe((data)=> {
-      console.log(data);
-    });
+    this.TestingService.getData()
+      
+    
     // console.log("x =>",x);
     return ;
   }
