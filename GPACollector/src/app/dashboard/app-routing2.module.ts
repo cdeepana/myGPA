@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomepageComponent } from './homepage/homepage.component';
-import { LoginComponent } from './login/login.component';
-import { AuthGuardService as AuthGuard } from '../app/_services/auth-guard.service';
-import { LoggedInAuthGuardService as DeactivateAuthGuard } from '../app/_services/can-deactivate-guard.service';
+
+import { AuthGuardService as AuthGuard } from '../_services/auth-guard.service';
+import { Initialization01Component } from './initialization01/initialization01.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent },
+  // { path: '', component: HomepageComponent },
   // { path: 'dashboard', loadChildren: "./pastevent/pastevent.module#PasteventModule"},
-  { path: 'dashboard', loadChildren: "./dashboard/dashboard.module#DashboardModule"},
   // { path: 'login', component: LoginComponent, canActivate: [DeactivateAuthGuard]},
   // {path: 'dashboard', component: DashboardComponent , canActivate:[AuthGuard]},
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  // { path: '**', redirectTo: '', pathMatch: 'full' }
+  // {path: 'sss', component: Initialization01Component},
+  {path:'xxx', component: Initialization01Component}
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRouting2Module { }
 
 
 // RouterModule.forRoot([

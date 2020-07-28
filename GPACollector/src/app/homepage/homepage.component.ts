@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TestingApiService } from '../_services/testing-api.service';
+import {AuthService} from '../_services/auth.service';
+import {MatDialog} from '@angular/material/dialog';
+import {LoginComponent} from './../login/login.component';
+import {RegisterComponent} from './../register/register.component';
 
 @Component({
   selector: 'app-homepage',
@@ -8,18 +11,39 @@ import { TestingApiService } from '../_services/testing-api.service';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(private TestingService: TestingApiService) { }
+  constructor(private authTest: AuthService,public dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
+  Login(): void {
+    console.log("clickd login");
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '500px',
+    });
 
-  getData(){
-    console.log("component clicked");
-    this.TestingService.getData()
-      
-    
-    // console.log("x =>",x);
-    return ;
+    dialogRef.afterClosed().subscribe(data => {
+      console.log('The dialog was closed data is :',data);
+      if(data=="regUser"){
+        this.register();
+      }
+    });
   }
+
+  register(): void {
+    console.log("clickd reg");
+    const dialogRef = this.dialog.open(RegisterComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      console.log('The dialog was closed');
+      if(data=="loginUser"){
+        this.Login();
+      }
+    });
+  }
+
+
+
 
 }

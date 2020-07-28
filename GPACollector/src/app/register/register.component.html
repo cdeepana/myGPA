@@ -1,0 +1,36 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+
+    <button (click)="onNoClick()" type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    <h1 id="text-align"><span class="badge badge-secondary">Sign Up</span></h1>
+  
+    <div class="form-group">
+        <label for="email">
+          User name
+        </label>
+        <input aria-describedby="emailHelp" placeholder="name"  class="form-control" id="username" type="text" formControlName="username">
+      </div>
+
+      <div class="form-group">
+        <label for="email">
+          Email
+        </label>
+        <input aria-describedby="emailHelp" placeholder="email"  class="form-control" id="email" type="email" formControlName="email">
+      </div>
+    
+      <div class="form-group">
+        <label for="password">
+          Password
+        </label>
+        <input id="exampleInputPassword1" placeholder="Password"class="form-control" id="password" type="password" formControlName="password">
+      </div>
+      <div id="text-end"><button text-right class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    
+    </form>
+
+
+    <div><p>Have already an account
+<a href="javascript:void(0);"   (click)="loginUser()">Login</a>
+</p></div>

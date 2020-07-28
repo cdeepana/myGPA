@@ -30,18 +30,18 @@ export class TestingApiService {
   // }
 
   getData(){
-    let headers = new Headers();
+    // let headers = new Headers();
     // this.createAuthorizationHeader(headers);
-    let name= "service data testing";
-    console.log(name);
-    // let token =localStorage.getItem('token')
-    // let x= this.http.post(this.baseUrl+"/checking",{'token': token});
-    // return x;
-   let url= this.baseUrl+"/test";
-   return this.http.get(url).subscribe((data)=>{
-     console.log("data ->>",data);
-   },(error:any)=>{
-    console.error(error);
-   });
+  //   let name= "service data testing";
+  //   console.log(name);
+  //   // let token =localStorage.getItem('token')
+  //   // let x= this.http.post(this.baseUrl+"/checking",{'token': token});
+  //   // return x;
+  //  let url= this.baseUrl+"/test";
+  //  return this.http.get(url).subscribe((data)=>{
+  //    console.log("data ->>",data);
+  //  },(error:any)=>{
+  //   console.error(error);
+  //  });
   }
 }

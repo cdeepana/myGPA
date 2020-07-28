@@ -10,7 +10,7 @@
     <a class="dropdown-item" href="#">SEARCH <a class="mini-words">without login</a></a>
   </div>
   
-<button (click)="getData()">getData2</button>
+
 
 
   <div class="jumbotron jumbotron-fluid">
@@ -18,11 +18,13 @@
       <h1 class="display-3">My GPA</h1>
       <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of it's parent.</p>
       <p class="lead">
-        <a class="btn btn-primary btn-lg" href="login" role="button">SIGN IN</a>
-      </p><p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">SIGN UP</a>
-      </p><p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">SEARCH</a>
+        <button class="btn btn-primary btn-lg" (click)="Login()"  role="button">SIGN IN</button>
       </p>
+      <p class="lead">
+        <button class="btn btn-primary btn-lg" (click)="register()" role="button">SIGN UP</button>
+      </p>
+      <p class="lead">
+        <button class="btn btn-primary btn-lg" href="#" role="button">SEARCH</button>
+      </p>  
     </div>
   </div>
