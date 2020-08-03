@@ -1,0 +1,240 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+    
+    </div>
+    <div class="col-sm-8">
+
+      
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button> -->
+  <div>
+    <h2>One-time GPA configuration, Please fill if only want some changes</h2>
+  </div>
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit_Credit(firstFormGroup.value)">
+            <ng-template matStepLabel>Grading System Initialization</ng-template>
+            <table style="width:100%">
+              <tr>
+                <th>Grade</th>
+                <th>Credit</th>
+              </tr>
+              <tr>
+                <td>A+</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 4.2</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_A_plus" value="4.2" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>A</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 4.0</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_A" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>A-</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 3.7</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_A_minus" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>B+</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 3.3</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_B_plus" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 3.0</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_B" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>B-</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 2.7</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_B_minus" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>C+</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 2.3</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_C_plus" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>C</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 2.0</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_C" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>C-</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 1.5</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_C_minus" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>D</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 1.0</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_D" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>I</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 0.0</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_I" readonly required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>F</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>default 0.0</mat-label> -->
+                    <input matInput placeholder="Enter credit amount" formControlName="Ctrl_F" readonly required>
+                  </mat-form-field>
+                </td>
+              </tr>
+            
+            </table>
+        
+            <div>
+              <button  mat-button matStepperNext>Save</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="secondFormGroup">
+
+          <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit_Credit(secondFormGroup.value)">
+            <ng-template matStepLabel>Classes Range Initialization</ng-template>
+            <table style="width:100%">
+              <tr>
+                <th>Academic Standing</th>
+                <th>Overall GPA</th>
+              </tr>
+              <tr>
+                <td>First Class</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>Enter the range</mat-label> -->
+                    <input matInput formControlName="Ctrl_FirstMin" placeholder="minimum value" required>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>Enter the range</mat-label> -->
+                    <input matInput formControlName="Ctrl_FirstMax" placeholder="maximum value" readonly required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>Second Class - Upper Division</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>Enter the range</mat-label> -->
+                    <input matInput formControlName="Ctrl_SecondUpperMin" placeholder="minimum value" required>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>Enter the range</mat-label> -->
+                    <input matInput formControlName="Ctrl_SecondUpperMax" placeholder="maximum value" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Second Class - Lower Division</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>Enter the range</mat-label> -->
+                    <input matInput formControlName="Ctrl_SecondLowerMin" placeholder="minimum value" required>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>Enter the range</mat-label> -->
+                    <input matInput formControlName="Ctrl_SecondLowerMax" placeholder="maximum value" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Pass</td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>Enter the range</mat-label> -->
+                    <input matInput formControlName="Ctrl_PassMin" placeholder="minimum value" required>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <!-- <mat-label>Enter the range</mat-label> -->
+                    <input matInput formControlName="Ctrl_PassMax" placeholder="maximum value" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+            
+            </table>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>save</button>
+            </div>
+          </form>
+
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>All configurations are correct </p>
+          <p>Do you like to save and go to next step</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+            <button (click)=route() >Done</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+
+
+    </div>
+    <div class="col-sm-2">
+    </div>
+  </div>
+</div>

@@ -17,6 +17,15 @@ import { TestingApiService } from './_services/testing-api.service';
 import { LoginComponent } from './login/login.component';
 import { AlertifyService } from './_services/alertify.service';
 import { RegisterComponent } from './register/register.component';
+// import { MatStepperModule } from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { StepperTestingComponent } from './stepperTesting/stepperTesting.component';
+
+
 
 
 
@@ -25,17 +34,25 @@ import { RegisterComponent } from './register/register.component';
       AppComponent,
       HomepageComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      StepperTestingComponent
    ],
    imports: [
-      DashboardModule,
+      // DashboardModule,
+      FormsModule,
       MatDialogModule,
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       ReactiveFormsModule,
       BrowserAnimationsModule,
-      MatSliderModule
+      MatSliderModule,
+      MatStepperModule,
+      MatInputModule,
+      MatButtonModule,
+      MatAutocompleteModule,
+      MatFormFieldModule,
+      // MatHorizontalStepper
       
 
    ],

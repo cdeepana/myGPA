@@ -45,7 +45,7 @@ export class LoginComponent {
         console.log("response ->",response);
         this.authService.setUserInfo(response['token']);
         this.dialogRef.close();
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard/initialization']);
   
       },error=>{
           this.alertify.error('Loging Unsuccessful, Retry');

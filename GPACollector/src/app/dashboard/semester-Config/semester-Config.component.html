@@ -1,0 +1,149 @@
+<form [formGroup]="semesterCreationFormGroup" (ngSubmit)="onSubmit_SubjectForm(semesterCreationFormGroup.value)">
+<div class="form-group">
+  <!-- <label>
+    subject 1:
+    <input class="form-control" type="text" formControlName="Ctrl_sem01">
+  </label> -->
+
+
+
+  <div class="form-row">
+    <div class="col">
+      <input class="form-control" type="text" formControlName="Ctrl_sem01" placeholder="subject name">
+    </div>
+    <div class="col">
+      <select id="inputState" class="form-control">
+        <option>A+</option>
+        <option>A</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B</option>
+        <option>B-</option>
+        <option>C+</option>
+        <option>C</option>
+        <option>C-</option>
+        <option>D</option>
+        <option>I</option>
+        <option>F</option>
+      </select>
+    </div>
+  </div>
+
+
+
+
+  <label *ngIf="subjectCount >1">
+    Last Name:
+    <input class="form-control" type="text" formControlName="Ctrl_sem02">
+  </label>
+
+
+  <label *ngIf="subjectCount >2">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  <label *ngIf="subjectCount >3">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  <label *ngIf="subjectCount >4">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+  
+
+  <label *ngIf="subjectCount >5">
+    Last Name:
+    <input  class="form-control" type="text" formControlName="Ctrl_sem03">
+  </label>
+  
+  <label *ngIf="subjectCount >6">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+  
+  <label *ngIf="subjectCount >7">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+
+  <label *ngIf="subjectCount >8">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+  
+  <label *ngIf="subjectCount >9">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  <label *ngIf="subjectCount >10">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  <label *ngIf="subjectCount >11">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  <label *ngIf="subjectCount >12">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  <label *ngIf="subjectCount >13">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  <label *ngIf="subjectCount >14">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  <label *ngIf="subjectCount >15">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+  
+  <label *ngIf="subjectCount >16">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  
+  <label *ngIf="subjectCount >17">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  
+  <label *ngIf="subjectCount >18">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+  
+  <label *ngIf="subjectCount >19">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+
+
+  <label *ngIf="subjectCount >20">
+    Last Name:
+    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
+  </label>
+  <label>
+    <button (click)="addSubject()" type="button" class="btn btn-primary">
+      add subject
+    </button>
+  </label>
+  <button type="submit">submit</button>
+</div>
+
+</form>
