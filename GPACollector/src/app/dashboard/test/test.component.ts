@@ -20,6 +20,7 @@ export class TestComponent implements OnInit {
     this.dynamicForm = this.formBuilder.group({
       tickets: new FormArray([])
   });
+  this.addSubject(true);
   }
 
   
@@ -27,8 +28,8 @@ export class TestComponent implements OnInit {
     get f() { return this.dynamicForm.controls; }
     get t() { return this.f.tickets as FormArray; }
 
-    addSubject() {
-    this.numberOfSubjects +=1;
+    addSubject(istrue) {
+       this.numberOfSubjects += (istrue) ? 1:-1;
         if (this.t.length < this.numberOfSubjects) {
             for (let i = this.t.length; i < this.numberOfSubjects; i++) {
                 this.t.push(this.formBuilder.group({
@@ -60,13 +61,17 @@ export class TestComponent implements OnInit {
         this.submitted = false;
         this.dynamicForm.reset();
         this.t.clear();
-        this.numberOfSubjects=0;
+        this.numberOfSubjects=1;
     }
 
     onClear() {
         // clear errors and reset ticket fields
         this.submitted = false;
         this.t.reset();
+    }
+
+    finishSubject(data){
+        console.log("fdfsdfsd",data);
     }
 
 }

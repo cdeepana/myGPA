@@ -2,16 +2,25 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 JWTstrategy = require("passport-jwt").Strategy,
 ExtractJWT = require("passport-jwt").ExtractJwt;
+const User = require('./../../../model/Users')
 // const bcrypt = require('bcrypt')
 
 function initialize() {
   const loginUser = (username, password, done) => {
+
+    User.findOne({email: username}).then(user =>{
+      if(user){
+        if(user.password == password){
+          return done(null, username);
+        }
+      }
+      else{
+        return done("unauthorized access", false);
+      }
+    });
     console.log("test out", username, password);
-    if (username === "admin" && password === "admin") {
-      return done(null, username);
-    } else {
-      return done("unauthorized access", false);
-    }
+
+  
   };
 
   const opts = {
@@ -19,20 +28,14 @@ function initialize() {
     secretOrKey: process.env.refresh_token_secret,
   };
 
-//   const authenticateUser = (jwt_payload, done) => {
-//     console.log("authentic test");
 
-//     console.log("jwt_payload===>", jwt_payload);
-//     done(null, jwt_payload);
-//   };
+  passport.use("login", new LocalStrategy({
+    usernameField: 'email'
+  },loginUser));
 
-  passport.use("login", new LocalStrategy(loginUser));
-  // passport.use('authenticate',new JWTstrategy(opts, authenticateUser))
 
-  passport.use( "authenticate",new JWTstrategy(opts, (jwt_payload, done) => 
+  passport.use("authenticate",new JWTstrategy(opts, (jwt_payload, done) => 
     {
-      var jwttt = ExtractJWT().fromHeader();
-      console.log("jwtt",jwttt);
       console.log("authentic test",opts); 
       console.log("jwt_payload===>", jwt_payload);
       done(null, jwt_payload);
