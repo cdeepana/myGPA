@@ -11,7 +11,7 @@ function initialize() {
     User.findOne({email: username}).then(user =>{
       if(user){
         if(user.password == password){
-          return done(null, username);
+          return done(null, user);
         }
       }
       else{

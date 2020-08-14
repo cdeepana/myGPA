@@ -1,149 +1,111 @@
-<form [formGroup]="semesterCreationFormGroup" (ngSubmit)="onSubmit_SubjectForm(semesterCreationFormGroup.value)">
-<div class="form-group">
-  <!-- <label>
-    subject 1:
-    <input class="form-control" type="text" formControlName="Ctrl_sem01">
-  </label> -->
-
-
-
-  <div class="form-row">
-    <div class="col">
-      <input class="form-control" type="text" formControlName="Ctrl_sem01" placeholder="subject name">
-    </div>
-    <div class="col">
-      <select id="inputState" class="form-control">
-        <option>A+</option>
-        <option>A</option>
-        <option>A-</option>
-        <option>B+</option>
-        <option>B</option>
-        <option>B-</option>
-        <option>C+</option>
-        <option>C</option>
-        <option>C-</option>
-        <option>D</option>
-        <option>I</option>
-        <option>F</option>
-      </select>
-    </div>
-  </div>
-
-
-
-
-  <label *ngIf="subjectCount >1">
-    Last Name:
-    <input class="form-control" type="text" formControlName="Ctrl_sem02">
-  </label>
-
-
-  <label *ngIf="subjectCount >2">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  <label *ngIf="subjectCount >3">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  <label *ngIf="subjectCount >4">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-  
-
-  <label *ngIf="subjectCount >5">
-    Last Name:
-    <input  class="form-control" type="text" formControlName="Ctrl_sem03">
-  </label>
-  
-  <label *ngIf="subjectCount >6">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-  
-  <label *ngIf="subjectCount >7">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-
-  <label *ngIf="subjectCount >8">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-  
-  <label *ngIf="subjectCount >9">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  <label *ngIf="subjectCount >10">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  <label *ngIf="subjectCount >11">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  <label *ngIf="subjectCount >12">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  <label *ngIf="subjectCount >13">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  <label *ngIf="subjectCount >14">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  <label *ngIf="subjectCount >15">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-  
-  <label *ngIf="subjectCount >16">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  
-  <label *ngIf="subjectCount >17">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  
-  <label *ngIf="subjectCount >18">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-  
-  <label *ngIf="subjectCount >19">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-
-
-  <label *ngIf="subjectCount >20">
-    Last Name:
-    <input class="form-control"  type="text" formControlName="Ctrl_sem03">
-  </label>
-  <label>
-    <button (click)="addSubject()" type="button" class="btn btn-primary">
-      add subject
+<div class="modal-content" >
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">Subjects</h5>
+    <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
     </button>
-  </label>
-  <button type="submit">submit</button>
-</div>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="dynamicForm">
+      <!-- <div class="card m-3"> -->
+        <div style="padding-bottom: 4%;" class="row">
+          <div class="col-1"></div>
+          <div class="col-5">   
+             <!-- <div data-toggle="tooltip" data-placement="top" title="Enter Year Of Semester" class="form-group col-5"> -->
+            <!-- <input placeholder="ex: 2018" type="number" formControlName="yearOfSem" class="form-control"  required  /> -->
+            <label>Semester Year</label>
+            <select formControlName="yearOfSem" id="inputState" class="form-control">
+              <option>1<sup>st</sup> year</option>
+              <option>2<sup>nd</sup> year</option>
+              <option>3<sup>rd</sup> year</option>
+              <option>4<sup>th</sup> year</option>
+              <option>5<sup>th</sup> year</option>
+            </select>
+          <!-- </div> -->
+        </div>
+          <div class="col-1"></div>
+          <div class="col-5">
+            <!-- <div data-toggle="tooltip" data-placement="top" title="Enter Semester Term" class="form-group col-5"> -->
+              <label >Semester term</label>
+              <select formControlName="numberOfSem" id="inputState" class="form-control">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+              </select>
+            <!-- </div> -->
+          </div>
+        </div>
+    
+        <div *ngFor="let subject of t.controls; let i = index" class="list-group list-group-flush">
+          <!-- <div class="list-group-item"> -->
+    
+            <div [formGroup]="subject" class="form-row">
+              <div class="form-group col-1">
+                <h5 class="card-title"> {{i + 1}}</h5>
+              </div>
+              <div data-toggle="tooltip" data-placement="top" title="Enter Subject Name" class="form-group col-6">
+    
+                <input placeholder="subject name" type="text" formControlName="name" class="form-control" />
+    
+              </div>
+              <div data-toggle="tooltip" data-placement="top" title="Enter Credit of Subject" class="form-group col-3">
+                <input type="number"  placeholder="credit" formControlName="credit" class="form-control" />
+              </div>
 
-</form>
+              <div data-toggle="tooltip" data-placement="top" title="Enter Your Grade" class="form-group col-2">
+             
+    
+                <!-- <input type="text" formControlName="email" class="form-control"/> -->
+                <select formControlName="subjectGrade" id="inputState" class="form-control">
+                  <option>A+</option>
+                  <option>A</option>
+                  <option>A-</option>
+                  <option>B+</option>
+                  <option>B</option>
+                  <option>B-</option>
+                  <option>C+</option>
+                  <option>C</option>
+                  <option>C-</option>
+                  <option *ngIf="isDplus">D+</option> 
+                  <option>D</option>
+                  <option>I</option>
+                  <option>F</option>
+                </select>
+    
+              </div>
+             
+            </div>
+          </div>
+        <!-- </div> -->
+        <div class="row">
+          <div class="col-3">
+            <!-- <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Hi there!">
+              Tooltip Test
+          </button> -->
+          </div>
+          <div  class="col-5">
+            <button class="btn btn-primary" (click)="addSubject(true)">add subject</button>
+          </div>
+          <div  class="col-3">
+            <button class="btn btn-primary" (click)="addSubject(false)">remove</button>
+          </div>
+          <div class="col-1">
+          </div>
+        </div>
+      
+       
+      <!-- </div> -->
+     <div class="modal-footer">
+        <!-- <button (click)="onReset()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button  type="submit" class="btn btn-primary" (click)="onSubmit(dynamicForm.value);" data-dismiss="modal" 
+        [disabled]="!dynamicForm.valid"
+        >Done</button>
+      </div>
+    </form>
+    
+</div>
+ 
+</div>
+<!-- 
+<button (click)="one.ngOnInit()" >Call Component One Method</button>
+<app-base #one></app-base> -->

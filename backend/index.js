@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 mongoose.connect('mongodb://localhost:27017/mygpa',{ useNewUrlParser: true,  useUnifiedTopology: true  });
 
 mongoose.connection.once('open' ,()=> {
@@ -28,9 +29,9 @@ mongoose.connection.once('open' ,()=> {
 
 
 
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    // res.header("Access-Control-Allow-Origin", "http://192.168.1.102:4200");
     // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept","Authorization");
     res.header("Access-Control-Allow-Headers", "*");
     next();

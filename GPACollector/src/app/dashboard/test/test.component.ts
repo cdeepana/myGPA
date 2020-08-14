@@ -34,6 +34,7 @@ export class TestComponent implements OnInit {
             for (let i = this.t.length; i < this.numberOfSubjects; i++) {
                 this.t.push(this.formBuilder.group({
                     name: ['', Validators.required],
+                    credit: ['', Validators.required],
                     subjectGrade: ['']
                 }));
             }

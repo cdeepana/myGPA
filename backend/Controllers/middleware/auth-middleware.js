@@ -1,7 +1,8 @@
 const passport = require("passport");
-const initializePassport = require("./passport-configurations/passport-config");
+const initializePassport = require("../auth/passport-configurations/passport-config");
 initializePassport();
-const User = require('../../model/Users')
+const one_timeConfig = require('../../model/onetimeConfig')
+const mycache = require('../../Controllers/nodeCache')
 
 function auth(type) {
   console.log("type ==>",type);
@@ -14,10 +15,25 @@ function auth(type) {
           return res.sendStatus(404);
           ;
       }
+      console.log("USER USER USER",user);
+      one_timeConfig.findOne({userID: user._id}).then(x => {
+        console.log("x",x);
+        // console.log("x.D_plus",x[D_plus]);
+
+        req.body.isDplus = !!x ? x.D_plus : false;  // otc mean one time config  
+        req.body.UserID =  user._id; 
+        mycache(user._id)
         req.login(user, function (error) {
           if (error) return next(error);
           next();
         });
+      })
+
+       // req modified with collection object id and finally it will return to front end in next js file
+        // req.login(user, function (error) {
+        //   if (error) return next(error);
+        //   next();
+        // });
       })(req, res, next);
     };
   }
@@ -31,8 +47,8 @@ function auth(type) {
           // if (err) return next(err);
           if (err) console.log("err->", err);
 
-          console.log("user->", user);
-          console.log("info->", info);
+          // console.log("user->", user);
+          // console.log("info->", info);
           if(user == false){
             res.json({auth: false});
           }
@@ -45,3 +61,5 @@ function auth(type) {
 }
 
 module.exports = auth;
+
+

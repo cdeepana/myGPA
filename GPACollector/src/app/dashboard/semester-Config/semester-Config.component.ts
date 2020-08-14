@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AlertifyService} from '../../_services/alertify.service';
+import {FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
+
+import 'bootstrap'
+import * as $ from 'jquery'
+import { DashboardService } from 'src/app/_services/dashboard.service';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-semester-Config',
@@ -10,48 +13,78 @@ import { AlertifyService} from '../../_services/alertify.service';
 })
 export class SemesterConfigComponent implements OnInit {
 
-  semesterCreationFormGroup : FormGroup;
-  subjectCount:any;
+  dynamicForm: FormGroup;
+  submitted = false;
+  numberOfSubjects:number;
+  isDplus: boolean
 
-  constructor(private _formBuilder: FormBuilder, private router : Router,private alertify: AlertifyService) { 
+  constructor(private formBuilder: FormBuilder,private dashboardService: DashboardService) { }
 
-    this.semesterCreationFormGroup = this._formBuilder.group({
-      Ctrl_sem01 : ['', ],
-      Ctrl_sem02 : ['', ],
-      Ctrl_sem03 : ['', ],
-      Ctrl_sem04 : ['', ],
-      Ctrl_sem05 : ['', ],
-      Ctrl_sem06 : ['', ],
-      Ctrl_sem07 : ['', ],
-      Ctrl_sem08 : ['', ],
-      Ctrl_sem09 : ['', ],
-      Ctrl_sem10 : ['', ],
-      Ctrl_sem11 : ['', ],
-      Ctrl_sem12 : ['', ],
-      Ctrl_sem13 : ['', ],
-      Ctrl_sem14 : ['', ],
-      Ctrl_sem15 : ['', ],
-      Ctrl_sem16 : ['', ],
-      Ctrl_sem17 : ['', ],
-      Ctrl_sem18 : ['', ],
-      Ctrl_sem19 : ['', ],
-      Ctrl_sem20 : ['', ],
-      
-    });
-  }
-
+  
 
   ngOnInit() {
-    this.subjectCount = 1;
+    
+    
+    this.isDplus = (this.dashboardService.isDplus()=='true')
+
+    $('[data-toggle="tooltip"]').tooltip();  // tooltip enabling 
+    this.numberOfSubjects=0;
+    this.dynamicForm = this.formBuilder.group({
+        yearOfSem: ['',Validators.required],
+        numberOfSem: ['',Validators.required],
+      subS: new FormArray([])
+  });
+  this.addSubject(true);
   }
 
-  addSubject(){
-    this.subjectCount ++;
-  }
+    // convenience getters for easy access to form fields
+    get f() { return this.dynamicForm.controls; }
+    get t() { return this.f.subS as FormArray; }
 
-  onSubmit_SubjectForm(data){
-    console.log(data);
+    addSubject(istrue) {
+       this.numberOfSubjects += (istrue) ? 1:-1;
+        if (this.t.length < this.numberOfSubjects) {
+            for (let i = this.t.length; i < this.numberOfSubjects; i++) {
+                this.t.push(this.formBuilder.group({
+                    name: ['', Validators.required],
+                    credit: ['', Validators.required],
+                    subjectGrade: ['']
+                }));
+            }
+        } else {
+            for (let i = this.t.length; i >= this.numberOfSubjects; i--) {
+                this.t.removeAt(i);
+            }
+        }
+    }
 
-  }
+    onReset() {
+        // reset whole form back to initial state
+        this.submitted = false;
+        this.dynamicForm.reset();
+        this.t.clear();
+        this.numberOfSubjects=1;
+    }
+
+    onClear() {
+        // clear errors and reset ticket fields
+        this.submitted = false;
+        this.t.reset();
+    }
+
+    onSubmit(data){
+        // data.numberOfSem = parseInt(data.numberOfSem.split('')[0]);
+        data.yearOfSem = parseInt(data.yearOfSem);  
+        // data.numberOfSem = parseInt(data.numberOfSem); 
+        console.log("new sem form",data);
+        this.dashboardService.createSem(data).subscribe((res)=>{
+            window.location.reload();
+            console.log(res);
+        },
+        error=>{
+            console.log(error)
+
+        })
+    }
 
 }

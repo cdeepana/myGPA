@@ -2,20 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'
 import { Observable, throwError } from 'rxjs';
+import { filter, map} from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import { Router} from '@angular/router'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   jwtHelper = new JwtHelperService();
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private route: Router) { }
   
   
   baseUrl= environment.apiUrl;
 
-  public isAuthenticated() {
+  isAuthenticated() {
 
     let userData = localStorage.getItem('token')
     if(userData){
@@ -25,30 +27,50 @@ export class AuthService {
   
   }
 
-  public removeUserInfo(){
+  removeUserInfo(){
     localStorage.removeItem('token');
+    localStorage.removeItem('UserID');
+    localStorage.removeItem('isDplus');
     return 0;
   }
 
-  public setUserInfo(user){
+  setUserInfo(user){
     console.log("user -->",user);
     localStorage.setItem('token', user);
   }
 
-  public validate(email, password) {
+  validate(email, password) {
     console.log(email,password);
     // return this.http.post(this.baseUrl+"/login", {'username' : email, 'password' : password}).toPromise()
     return this.http.post(this.baseUrl+"/login", {'email' : email, 'password' : password}).pipe(
-      
+      map(res=>{
+         console.log("x value",res)
+        //  console.log("XXXXXXXXXX",JSON.stringify(res[1]));
+         localStorage.setItem('UserID', res['UserID'] );
+         localStorage.setItem('isDplus', (!res['isDplus'] )? 'false' : 'true' )
+         if(res['isDplus']===false){
+         this.route.navigate(['dashboard/initialization'])
+         }
+         else{
+          this.route.navigate(['dashboard/base'])
+         }
+         return res;
+        })
     )
   }
 
-  public createUser(username,email, password) {
+  createUser(username,email, password) {
     console.log("xx",username,email,password);
     // return this.http.post(this.baseUrl+"/login", {'username' : email, 'password' : password}).toPromise()
     return this.http.post(this.baseUrl+"/register", {'username' : username, 'email':email, 'password' : password}).pipe(
+
+      map(res=>{
+        // console.log("x value",res['UserID'])
+        localStorage.setItem('UserID', res['UserID'] );
+        return res;
+       })
       
-    )
+    ) 
   }
 }
 

@@ -103,7 +103,12 @@
                   </mat-form-field>
                 </td>
               </tr>
-              <button *ngIf=!isDplus type="button" class="btn btn-secondary btn-sm" (click)="Dplus(true)">add D+ </button>
+              <tr>
+                <td></td>
+                <td>   <button *ngIf=!isDplus type="button" class="btn  btn-sm btn-outline-success" (click)="Dplus(true)">add D+ </button>
+                </td>
+              </tr>
+         
               <tr *ngIf=isDplus>
                 <td>D+</td>
                 <td>
@@ -113,8 +118,20 @@
                   </mat-form-field>
                 </td>
               </tr>
-              <button *ngIf=isDplus type="button" class="btn btn-secondary btn-sm" (click)="Dplus(false)">remove D+ </button>
+
+              <!-- <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6">
+                  <button *ngIf=isDplus type="button" class="btn  btn-sm btn-outline-danger" (click)="Dplus(false)">remove D+ </button>
+                </div>
+              </div> -->
+
               <tr>
+                <td></td>
+                <td>  <button *ngIf=isDplus type="button" class="btn  btn-sm btn-outline-danger" (click)="Dplus(false)">remove D+ </button>
+                </td>
+              </tr>
+               <tr>
                 <td>D</td>
                 <td>
                   <mat-form-field>

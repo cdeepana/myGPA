@@ -13,10 +13,10 @@ function RegisterController(req,res) {
         console.log("registeere ==>", req.body);
 
         newUser.save().then(data=>{
-                console.log("saved user data=>",data);
+                console.log("saved user data 4=>",data);
         const token = jwt.sign({ email: data.email }, process.env.refresh_token_secret,{expiresIn: '1h'})
         // console.log("type of token back end ", typeof(token),token);
-                return res.status(201).send({msg: 'user created',token: token})
+                return res.status(201).send({UserID: data. _id,token: token})
         //         );
         // return res.json({msg: "OK"});
 

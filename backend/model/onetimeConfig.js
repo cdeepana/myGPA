@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { ObjectID, ObjectId } = require('mongodb');
 const Scheme = mongoose.Schema;
 
 const one_timeConfig = new Scheme({
@@ -6,9 +7,9 @@ const one_timeConfig = new Scheme({
 
     // first declarations for grading initialization
     userID: {
-        type: String,
-        // required: true,
-        unique: false,
+        type: ObjectId,
+        required: true,
+        unique: true,
         trim: false,
         minlength: 2
     },
@@ -68,7 +69,7 @@ const one_timeConfig = new Scheme({
     },
     D_plus: {
         type: Number,
-        required: false,
+        required: true,
         unique: false,
         trim: true
     },

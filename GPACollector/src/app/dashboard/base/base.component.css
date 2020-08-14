@@ -1,0 +1,25 @@
+
+  
+.base-background{
+    background-color:#b0b0b0;
+}
+
+/*  */
+
+.card-align{
+  padding: 0 1% 4% 1%;
+  max-width: 100%;
+}
+
+#good{
+  color: rgb(9, 219, 62);
+}
+#medium{
+  color: #047479;
+}
+#weak{
+  color: red;
+}
+#good,#medium,#weak{
+  font-weight: 500;
+}
