@@ -12,6 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class DashboardService {
   UserID
   OTC
+  UsedID2
 
   constructor(private http: HttpClient) {
     this.UserID = localStorage.getItem('UserID')
@@ -25,13 +26,17 @@ export class DashboardService {
     }
 
     public onetimeConfig(formA, formB) {   // one time config form submission 
-      console.log("xx", formA, "b", formB);
+      console.log("xx", formA, "b", formB, "userid2", this.UsedID2);
       localStorage.setItem('isDplus', (!formA['Ctrl_D_plus']) ? 'false' : 'true')
       return this.http.post(this.baseUrl + "/onetimeconfig", [formA, formB, { UserID: this.UserID }]).pipe()
     }
 
-    public createSem(data) {   // one time config form submission 
+    public createOrUpdateSem(data) {   // one time config form submission 
       return this.http.post(this.baseUrl + "/createsem", [data, { UserID: this.UserID }]).pipe()
+    }
+
+    public deleteASem(data) {   // one time config form submission 
+      return this.http.delete(this.baseUrl + "/deletesem", {params:data}).pipe()
     }
 
     public getSems(){
@@ -48,7 +53,10 @@ export class DashboardService {
         return this.http.get(this.baseUrl + '/getOTC' , {params:params} ).pipe(
         )
       
-     
       
+    }
+    public gatheringUsedID(ID2){
+      this.UsedID2 = ID2;
+      console.log("saved user id", this.UsedID2);
     }
 }

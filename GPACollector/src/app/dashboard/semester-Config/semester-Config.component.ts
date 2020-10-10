@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import {FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
 
 import 'bootstrap'
+import { disable } from 'colors';
 import * as $ from 'jquery'
+import { AlertifyService } from 'src/app/_services/alertify.service';
 import { DashboardService } from 'src/app/_services/dashboard.service';
+import { Event_emitterCustomService } from 'src/app/_services/event_emitterCustom.service';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
@@ -13,42 +16,70 @@ import { BaseComponent } from '../base/base.component';
 })
 export class SemesterConfigComponent implements OnInit {
 
+    
+  @Output() cancelRegister = new EventEmitter();
   dynamicForm: FormGroup;
   submitted = false;
   numberOfSubjects:number;
-  isDplus: boolean
+  isDplus: boolean;
+  viewSubject : any
 
-  constructor(private formBuilder: FormBuilder,private dashboardService: DashboardService) { }
+  constructor(private formBuilder: FormBuilder,private dashboardService: DashboardService,
+    private eventEmitterService: Event_emitterCustomService, private alertify: AlertifyService) { }
 
-  
+    ngOnInit() {
 
-  ngOnInit() {
-    
-    
-    this.isDplus = (this.dashboardService.isDplus()=='true')
+        if (this.eventEmitterService.subVar == undefined) {
+            this.eventEmitterService.subVar = this.eventEmitterService.
+            invokeSemesterConfigComponentFunction.subscribe((viewSubject: Object) => {
+                    this.viewSubject = viewSubject
+                    this.dynamicFormCreation();
+                });
+        }
+        this.dynamicFormCreation();
+      
+    }
+    dynamicFormCreation(){
+        this.isDplus = (this.dashboardService.isDplus() == 'true')
+        if(!this.viewSubject)
+        {
+            $('[data-toggle="tooltip"]').tooltip();  // tooltip enabling 
+        this.numberOfSubjects = 0;
+        this.dynamicForm = this.formBuilder.group({
+            yearOfSem: ['', Validators.required],
+            numberOfSem: ['', Validators.required],
+            subS: new FormArray([])
+        });
+        this.addSubject(true,null);
+        }
+        else
+        {
+            $('[data-toggle="tooltip"]').tooltip();  // tooltip enabling 
+            this.numberOfSubjects = 0;
+            this.dynamicForm = this.formBuilder.group({
+                yearOfSem: [this.viewSubject.yearOfSem,  Validators.required],
+                numberOfSem: [this.viewSubject.numberOfSem, Validators.required],
+                subS: new FormArray([])
+            });
+            this.testing(this.viewSubject);
+        }
 
-    $('[data-toggle="tooltip"]').tooltip();  // tooltip enabling 
-    this.numberOfSubjects=0;
-    this.dynamicForm = this.formBuilder.group({
-        yearOfSem: ['',Validators.required],
-        numberOfSem: ['',Validators.required],
-      subS: new FormArray([])
-  });
-  this.addSubject(true);
-  }
+
+
+    }
 
     // convenience getters for easy access to form fields
     get f() { return this.dynamicForm.controls; }
     get t() { return this.f.subS as FormArray; }
 
-    addSubject(istrue) {
+    addSubject(istrue,updateValues) {
        this.numberOfSubjects += (istrue) ? 1:-1;
         if (this.t.length < this.numberOfSubjects) {
             for (let i = this.t.length; i < this.numberOfSubjects; i++) {
                 this.t.push(this.formBuilder.group({
-                    name: ['', Validators.required],
-                    credit: ['', Validators.required],
-                    subjectGrade: ['']
+                    name: [(updateValues)? updateValues.name: '', Validators.required],
+                    credit: [(updateValues)? updateValues.credit:'', Validators.required],
+                    subjectGrade: [(updateValues)? updateValues.subjectGrade:'']
                 }));
             }
         } else {
@@ -73,18 +104,35 @@ export class SemesterConfigComponent implements OnInit {
     }
 
     onSubmit(data){
+        
+        // console.log("dynamicForm",this.dynamicForm);
+        // return;
         // data.numberOfSem = parseInt(data.numberOfSem.split('')[0]);
         data.yearOfSem = parseInt(data.yearOfSem);  
-        // data.numberOfSem = parseInt(data.numberOfSem); 
-        console.log("new sem form",data);
-        this.dashboardService.createSem(data).subscribe((res)=>{
-            window.location.reload();
-            console.log(res);
+        data.numberOfSem = parseInt(data.numberOfSem); 
+        // console.log("new sem form",data);
+        console.log("testing data002", data);
+        this.dashboardService.createOrUpdateSem(data).subscribe((res)=>{
+            
+        this.alertify.success('Successfully updated Semester');
+            this.cancelRegister.emit();
+            // window.location.reload()
+        
         },
         error=>{
             console.log(error)
-
+            this.alertify.error('Updating Semester Error Occured');
         })
+    }
+
+    testing(data){
+        console.log("teesting event pass binding",data);
+        console.log("length of subject array",data.semInfo[0].length);
+        data.semInfo[0].forEach((element,index) => {
+            console.log("elemtn",index,element);
+            this.addSubject(true,element);
+        });
+        // this.addSubject(true);
     }
 
 }

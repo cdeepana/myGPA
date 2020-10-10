@@ -24,18 +24,21 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { StepperTestingComponent } from './stepperTesting/stepperTesting.component';
+import { Event_emitterCustomService } from './_services/event_emitterCustom.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 
 
 
 @NgModule({
-   declarations: [
+   declarations: [	
       AppComponent,
       HomepageComponent,
       LoginComponent,
       RegisterComponent,
-      StepperTestingComponent
+      StepperTestingComponent,
+      NavBarComponent
    ],
    imports: [
       // DashboardModule,
@@ -58,7 +61,7 @@ import { StepperTestingComponent } from './stepperTesting/stepperTesting.compone
    ],
    providers: [TestingApiService,
       { provide: HTTP_INTERCEPTORS, useClass: HeaderInitializationInterceptor, multi: true },
-      AlertifyService
+      AlertifyService, Event_emitterCustomService
    ],
    bootstrap: [
       AppComponent

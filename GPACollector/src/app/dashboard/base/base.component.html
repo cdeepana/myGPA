@@ -6,35 +6,21 @@
   <hr class="my-4">
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <p class="lead">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="semConfigRerun(null)">
       create a semester  &#43;
     </button>
-
     <button (click)="getSemDetails()">get sem info</button>
     <button (click)="getOnetimeConfig()">get one time config</button>
   </p>
- 
 </div>
-
 <!-- Semester creation Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
    
-        <app-semester-Config></app-semester-Config>
-   
+        <app-semester-Config (cancelRegister)="cancelRegisterMode()" ></app-semester-Config>
   </div>
-  
 </div>
-
 <!-- Semester creation model end -->
-
-
-
-
-
-
-
-
 
 <!-- =========================== start card view in base UI  -->
 <div class="container">
@@ -63,6 +49,7 @@
               <li  class="list-group-item">Good    : <a id="good"> {{semDetails[i].semInfo[1]['Good']}}</a></li>
               <li  class="list-group-item">Medium  : <a id="medium">{{semDetails[i].semInfo[1]['Medium']}}</a> </li>
               <li  class="list-group-item">Weak    : <a id="weak">{{semDetails[i].semInfo[1]['Weak']}}</a> </li>
+              <li  class="list-group-item">sGPA    : <a >{{semDetails[i].semInfo[1]['sGpaView']}}</a> </li>
             </ul>
             <div style="padding-top: 5px;" class="row">
               <div class="col-7"></div>
@@ -83,13 +70,12 @@
   </div>
 <!--  start card view in base UI   -->
 
-
 <!--POP UP semester view Modal -->
 <div style="padding-top: 30px;" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div *ngIf="viewSubject" class="modal-header">
 
+      <div *ngIf="viewSubject" class="modal-header">
         <div *ngIf="viewSubject.yearOfSem==1"> 
           <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>st</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
         </div>
@@ -102,13 +88,11 @@
         <div *ngIf="viewSubject.yearOfSem >=4"> 
           <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>th</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
         </div>
-
-
-
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <table *ngIf="viewSubject" class="table">
           <thead>
@@ -129,19 +113,65 @@
                   <td id="good" *ngSwitchCase="'Good'">{{sub.status}}</td>
                   <td id="medium" *ngSwitchCase="'Medium'" >{{sub.status}}</td>
                   <td id="weak" *ngSwitchCase="'Weak'">{{sub.status}}</td>
+                  <td id="weak" *ngSwitchCase="'--'">{{sub.status}}</td>
                 </div>
-               
-               
+          
               </tr>
           </tbody>
         </table>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary">Edit</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" (click)="semConfigRerun(viewSubject)" data-toggle="modal" data-target="#exampleModalCenter" data-dismiss="modal">Edit</button>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteSemModal" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" >Close</button>
       </div>
+      
     </div>
   </div>
 </div>
 <!-- POP UP semester view -->
+
+<!-- POP UP DELETE semester modal -->
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal" id="deleteSemModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal modal-dialog-centered" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body" style="text-align: -webkit-center; font-size: 125%;">
+         <div> Do you want to Delete the semester {{viewSubject?.numberOfSem}} of 
+          <div *ngIf="viewSubject?.yearOfSem==1">{{viewSubject?.yearOfSem}}  <sup>st</sup> year?</div>
+          <div *ngIf="viewSubject?.yearOfSem==2">{{viewSubject?.yearOfSem}}  <sup>nd</sup> year?</div>
+          <div *ngIf="viewSubject?.yearOfSem==3">{{viewSubject?.yearOfSem}}  <sup>rd</sup> year?</div>
+          <div *ngIf="viewSubject?.yearOfSem>=4">{{viewSubject?.yearOfSem}}  <sup>th</sup> year?</div>
+          
+        </div> 
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deletesem()">Yes</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Finished DELETE modal -->
 <!-- </body> -->
+
+<!-- <div *ngIf="viewSubject.yearOfSem==1"> 
+  <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>st</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
+</div>
+<div *ngIf="viewSubject.yearOfSem==2"> 
+  <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>nd</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
+</div>
+<div *ngIf="viewSubject.yearOfSem==3"> 
+  <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>rd</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
+</div>
+<div *ngIf="viewSubject.yearOfSem >=4"> 
+  <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>th</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
+</div> -->

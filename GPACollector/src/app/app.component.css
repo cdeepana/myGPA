@@ -1,0 +1,19 @@
+
+.padding{
+    padding: 1%;
+}
+@media screen and (max-width: 1024px) and (min-width: 656px) {
+    .padding{
+      padding-top: 5%;
+    }
+  }
+  @media screen and (max-width: 655px) and (min-width: 576px) {
+    .padding{
+      padding-top: 8%;
+    }
+  }
+  @media screen and (max-width: 575px) and (min-width: 200px) {
+    .padding{
+      padding-top: 10%;
+    }
+  }

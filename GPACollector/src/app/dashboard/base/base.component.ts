@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/_services/dashboard.service';
+import { Event_emitterCustomService } from 'src/app/_services/event_emitterCustom.service';
 
 
 @Component({
@@ -12,12 +13,14 @@ export class BaseComponent implements OnInit {
   semDetails: any;
   viewSubject: any;
   OTC:any;
+  parentItem = 'lamp';
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService, private eventEmitterService : Event_emitterCustomService) { }
 
   ngOnInit() {
     // start
     // stop
+    
     this.getSemDetails()
   }
 
@@ -34,8 +37,7 @@ export class BaseComponent implements OnInit {
 
   viewSem(viewNUmber){
     this.viewSubject = this.semDetails[viewNUmber]
-    // this.viewSubject = JSON.stringify(this.viewSubject)
-    console.log("viewSem", this.viewSubject);
+    console.log("viewSem",this.viewSubject);
   }
 
   getOnetimeConfig(){
@@ -47,6 +49,25 @@ export class BaseComponent implements OnInit {
       console.log("error", error);
     })
   }
+
+  semConfigRerun(viewSubject){
+    this.eventEmitterService.onSemConfigReRun(viewSubject)
+  }
+
+  cancelRegisterMode() {
+    console.log("clicked");
+    this.ngOnInit();
+  }
+
+  deletesem(){
+    console.log("delete sem is ",this.viewSubject);
+    this.dashboardService.deleteASem({userID: (this.viewSubject.userID), numberOfSem: this.viewSubject.numberOfSem, yearOfSem: this.viewSubject.yearOfSem}).subscribe(data=>{
+      console.log(data);
+    },error=>{
+      console.log("error delete sem", error);
+    })
+  }
+  
 
  
 

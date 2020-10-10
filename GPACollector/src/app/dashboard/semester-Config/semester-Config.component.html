@@ -13,25 +13,43 @@
           <div class="col-5">   
              <!-- <div data-toggle="tooltip" data-placement="top" title="Enter Year Of Semester" class="form-group col-5"> -->
             <!-- <input placeholder="ex: 2018" type="number" formControlName="yearOfSem" class="form-control"  required  /> -->
-            <label>Semester Year</label>
-            <select formControlName="yearOfSem" id="inputState" class="form-control">
-              <option>1<sup>st</sup> year</option>
-              <option>2<sup>nd</sup> year</option>
-              <option>3<sup>rd</sup> year</option>
-              <option>4<sup>th</sup> year</option>
-              <option>5<sup>th</sup> year</option>
-            </select>
+            
+            <div *ngIf="!viewSubject; else elseBlock01">
+              <label>Semester Year</label>
+              <select formControlName="yearOfSem" id="inputState" class="form-control">
+                <option>1<sup>st</sup> year</option>
+                <option>2<sup>nd</sup> year</option>
+                <option>3<sup>rd</sup> year</option>
+                <option>4<sup>th</sup> year</option>
+                <option>5<sup>th</sup> year</option>
+              </select>  
+            </div>
+            <ng-template #elseBlock01>
+              <label>Semester Year</label>
+              <input formControlName="yearOfSem" id="inputState" class="form-control"  disabled>
+            </ng-template>
+
+
+
+
           <!-- </div> -->
         </div>
           <div class="col-1"></div>
           <div class="col-5">
             <!-- <div data-toggle="tooltip" data-placement="top" title="Enter Semester Term" class="form-group col-5"> -->
+             <div *ngIf="!viewSubject; else elseBlock02">
               <label >Semester term</label>
               <select formControlName="numberOfSem" id="inputState" class="form-control">
                 <option>01</option>
                 <option>02</option>
                 <option>03</option>
               </select>
+            </div>
+
+            <ng-template #elseBlock02>
+              <label>Semester term</label>
+              <input formControlName="numberOfSem" id="inputState" class="form-control" disabled >
+            </ng-template> 
             <!-- </div> -->
           </div>
         </div>
@@ -84,10 +102,10 @@
           </button> -->
           </div>
           <div  class="col-5">
-            <button class="btn btn-primary" (click)="addSubject(true)">add subject</button>
+            <button class="btn btn-primary" (click)="addSubject(true,null)">add subject</button>
           </div>
           <div  class="col-3">
-            <button class="btn btn-primary" (click)="addSubject(false)">remove</button>
+            <button class="btn btn-primary" (click)="addSubject(false,null)">remove</button>
           </div>
           <div class="col-1">
           </div>

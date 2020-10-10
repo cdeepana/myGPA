@@ -70,7 +70,8 @@ export class InitializationComponent implements OnInit {
   }
 
   Dplus(value){
-    this.isDplus = value
+    this.isDplus = (!this.isDplus) ? value: !value
+    console.log("22",this.isDplus);
     this.formA.Ctrl_C_minus = value? 1.7:1.5
     this.formA.Ctrl_D_plus = value ? 1.3: null
     this.ngOnInit();

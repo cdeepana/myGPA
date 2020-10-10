@@ -6,13 +6,14 @@ import { filter, map} from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { Router} from '@angular/router'
+import { DashboardService } from './dashboard.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   jwtHelper = new JwtHelperService();
-  constructor(private http : HttpClient, private route: Router) { }
+  constructor(private http : HttpClient, private route: Router, private dashboard: DashboardService) { }
   
   
   baseUrl= environment.apiUrl;
@@ -46,6 +47,8 @@ export class AuthService {
       map(res=>{
          console.log("x value",res)
         //  console.log("XXXXXXXXXX",JSON.stringify(res[1]));
+        
+        this.dashboard.gatheringUsedID(res['UserID']);
          localStorage.setItem('UserID', res['UserID'] );
          localStorage.setItem('isDplus', (!res['isDplus'] )? 'false' : 'true' )
          if(res['isDplus']===false){
@@ -66,6 +69,7 @@ export class AuthService {
 
       map(res=>{
         // console.log("x value",res['UserID'])
+        this.dashboard.gatheringUsedID(res['UserID']);
         localStorage.setItem('UserID', res['UserID'] );
         return res;
        })

@@ -1,12 +1,15 @@
-.jumbotron {
+/* .jumbotron {
     background: #ecf0f1;
     color: #c0392b;
-  }
+  } */
 
 .mini-words{
   color: red;
   font-family:Impact;
   font-size: x-small;
-  /* padding-left: inherit; */
-}
+ }
 
+
+.btn{
+  max-width: 25rem;
+}

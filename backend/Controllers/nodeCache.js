@@ -4,19 +4,21 @@
 // function nodecache(start){
  
 //     if(!!start){
-//         obj = { UserID: start };
-//         myCache.set( "myKey", obj );
-    
-//         // value = myCache.get( "myKey" );
-//         // console.log("success 0",value);
+//         obj = { UserID: start }
+//         myCache.set( "myKey", obj )
+//         // return 0;
+       
+//         console.log("saving process",start)
+//         let value2 = myCache.get( "myKey" )
+//         console.log(value2);
 //     }
 //     else{
-//        let value = myCache.get( "myKey" );
-//         console.log("success 0",value);
+//        let value = myCache.get( "myKey" )
+//         console.log("success myKey ------------->",value)
 //         return(req,res,next) =>{
 //             req.params.UserID = value ? value.UserID : null;
-//             console.log("reeq data node cache",req.params);
-//             (req,res,next);
+//             console.log("reeq data node cache")
+//             (req,res,next)
 //         }
 //     }
   

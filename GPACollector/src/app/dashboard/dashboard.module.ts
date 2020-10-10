@@ -11,6 +11,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import {MatTableModule} from '@angular/material/table';
 import {InitializationComponent} from './initialization/initialization.component';
@@ -39,6 +40,7 @@ import { TestComponent } from './test/test.component';
     MatFormFieldModule,
     MatTableModule,
     MatCheckboxModule,
+    MatSlideToggleModule,
     MatCardModule,
     DashboardRoutingModule,
     CommonModule
