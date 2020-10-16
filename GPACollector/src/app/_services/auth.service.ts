@@ -30,7 +30,6 @@ export class AuthService {
 
   removeUserInfo(){
     localStorage.removeItem('token');
-    localStorage.removeItem('UserID');
     localStorage.removeItem('isDplus');
     return 0;
   }
@@ -49,7 +48,6 @@ export class AuthService {
         //  console.log("XXXXXXXXXX",JSON.stringify(res[1]));
         
         this.dashboard.gatheringUsedID(res['UserID']);
-         localStorage.setItem('UserID', res['UserID'] );
          localStorage.setItem('isDplus', (!res['isDplus'] )? 'false' : 'true' )
          if(res['isDplus']===false){
          this.route.navigate(['dashboard/initialization'])
@@ -70,7 +68,6 @@ export class AuthService {
       map(res=>{
         // console.log("x value",res['UserID'])
         this.dashboard.gatheringUsedID(res['UserID']);
-        localStorage.setItem('UserID', res['UserID'] );
         return res;
        })
       

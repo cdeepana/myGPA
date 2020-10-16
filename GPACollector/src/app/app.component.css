@@ -17,3 +17,18 @@
       padding-top: 10%;
     }
   }
+
+  .bg {
+    /* The image used */
+    /* background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg"); */
+    
+    background-image: url("./../assets/image.jpg");
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+    /* background-color: bisque; */
+    /* Full height; */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    /* background-size: cover; */
+  }

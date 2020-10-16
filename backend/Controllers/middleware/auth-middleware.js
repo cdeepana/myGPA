@@ -2,7 +2,6 @@ const passport = require("passport");
 const initializePassport = require("../auth/passport-configurations/passport-config");
 initializePassport();
 const one_timeConfig = require('../../model/onetimeConfig')
-const mycache = require('../../Controllers/nodeCache')
 
 function auth(type) {
   console.log("type ==>",type);
@@ -22,7 +21,6 @@ function auth(type) {
 
         req.body.isDplus = !!x ? x.D_plus : false;  // otc mean one time config  
         req.body.UserID =  user._id; 
-        mycache(user._id)
         req.login(user, function (error) {
           if (error) return next(error);
           next();

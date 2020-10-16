@@ -23,9 +23,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { StepperTestingComponent } from './stepperTesting/stepperTesting.component';
 import { Event_emitterCustomService } from './_services/event_emitterCustom.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 
@@ -37,7 +37,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
       HomepageComponent,
       LoginComponent,
       RegisterComponent,
-      StepperTestingComponent,
       NavBarComponent
    ],
    imports: [
@@ -56,6 +55,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
       MatAutocompleteModule,
       MatFormFieldModule,
       // MatHorizontalStepper
+      MDBBootstrapModule.forRoot()
       
 
    ],

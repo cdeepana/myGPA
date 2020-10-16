@@ -22,4 +22,8 @@ export class NavBarComponent implements OnInit {
     this.alertify.message('Logged Out');
   }
 
+  settings(){
+    this.route.navigate(['dashboard/settings'])
+  }
+
 }

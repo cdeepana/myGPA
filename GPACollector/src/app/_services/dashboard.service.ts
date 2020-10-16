@@ -12,10 +12,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class DashboardService {
   UserID
   OTC
-  UsedID2
 
   constructor(private http: HttpClient) {
-    this.UserID = localStorage.getItem('UserID')
      
   }
 
@@ -25,10 +23,12 @@ export class DashboardService {
       return localStorage.getItem('isDplus')
     }
 
-    public onetimeConfig(formA, formB) {   // one time config form submission 
-      console.log("xx", formA, "b", formB, "userid2", this.UsedID2);
-      localStorage.setItem('isDplus', (!formA['Ctrl_D_plus']) ? 'false' : 'true')
-      return this.http.post(this.baseUrl + "/onetimeconfig", [formA, formB, { UserID: this.UserID }]).pipe()
+    public onetimeConfig(form) {   // one time config form submission 
+      this.UserID = (!!this.UserID)? this.UserID : sessionStorage.getItem('Uid') 
+    //  console.log("form['Ctrl_D_plus']",form['Ctrl_D_plus']);
+      localStorage.setItem('isDplus', (!form['Ctrl_D_plus']) ? 'false' : 'true')
+      sessionStorage.removeItem('Uid')
+      return this.http.post(this.baseUrl + "/onetimeconfig", [form, { UserID: this.UserID}]).pipe()
     }
 
     public createOrUpdateSem(data) {   // one time config form submission 
@@ -40,8 +40,11 @@ export class DashboardService {
     }
 
     public getSems(){
+      this.UserID = (!!this.UserID)? this.UserID : sessionStorage.getItem('Uid') 
+      console.log("getsem uID====>", this.UserID);
       let params = new HttpParams();
-      params = params.append('UserID', this.UserID);
+      params = params.append('UserID',  this.UserID );
+      sessionStorage.removeItem('Uid')
       return this.http.get(this.baseUrl + '/getsems',{params: params}).pipe()
     }
 
@@ -55,8 +58,14 @@ export class DashboardService {
       
       
     }
-    public gatheringUsedID(ID2){
-      this.UsedID2 = ID2;
-      console.log("saved user id", this.UsedID2);
+    public gatheringUsedID(ID){
+      this.UserID = ID;
+      console.log("saved user id", this.UserID);
+    }
+
+    public unloadOccuring(){
+      if(this.UserID){
+      sessionStorage.setItem('Uid',this.UserID)
+      }
     }
 }

@@ -1,36 +1,48 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
-
-    <button (click)="onNoClick()" type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    <h1 id="text-align"><span class="badge badge-secondary">Sign Up</span></h1>
+<div class="container">
   
-    <div class="form-group">
-        <label for="email">
-          User name
-        </label>
-        <input aria-describedby="emailHelp" placeholder="name"  class="form-control" id="username" type="text" formControlName="username">
-      </div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+  
+    <button (click)="onNoClick()" type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- <h1 id="text-align"><span class="badge badge-secondary">Sign In</span></h1> -->
+    <h1 id="text-align"><span >Register</span></h1>
+    
+    <div class="stypeLogin">
 
-      <div class="form-group">
-        <label for="email">
-          Email
-        </label>
-        <input aria-describedby="emailHelp" placeholder="email"  class="form-control" id="email" type="email" formControlName="email">
+      <div class=" form-group">
+        <span class="col-12">
+          <input class="slide-up form-control" id="username" type="text" placeholder="enter your name"  id="username" type="text" formControlName="username"/>
+          <label for="username">User name</label>
+        </span>
+      </div>
+  
+      <div class=" form-group">
+        <span class="col-12">
+          <input class="slide-up form-control" id="email" type="text" placeholder="enter your email" id="email" type="email" formControlName="email"/>
+          <label for="email">Email</label>
+        </span>
+      </div>
+  
+      <div class=" form-group">
+        <span class="col-12">
+          <input class="slide-up form-control" id="security" type="text" placeholder="enter a password" id="password" type="password" formControlName="password"/>
+          <label for="card">Password</label>
+        </span>
       </div>
     
-      <div class="form-group">
-        <label for="password">
-          Password
-        </label>
-        <input id="exampleInputPassword1" placeholder="Password"class="form-control" id="password" type="password" formControlName="password">
-      </div>
-      <div id="text-end"><button text-right class="btn btn-primary" type="submit">Submit</button>
-      </div>
+  
+    </div>
+   <div class="row">
+    <div class="col-6">
+      <div class="paddingup"><p>Have already an account
+      <a href="javascript:void(0);"  (click)="loginUser()">Login</a>
+      </p></div>
+    </div> 
+    <div class="col-6" style="text-align: end;">
+      <button text-right class="btn btn-primary" type="submit">Submit</button>
     
+  </div>
+   </div>
     </form>
-
-
-    <div><p>Have already an account
-<a href="javascript:void(0);"   (click)="loginUser()">Login</a>
-</p></div>
+  </div>

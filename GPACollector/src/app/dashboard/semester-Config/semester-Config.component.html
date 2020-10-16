@@ -75,6 +75,7 @@
     
                 <!-- <input type="text" formControlName="email" class="form-control"/> -->
                 <select formControlName="subjectGrade" id="inputState" class="form-control">
+                  <option></option>
                   <option>A+</option>
                   <option>A</option>
                   <option>A-</option>
@@ -96,16 +97,16 @@
           </div>
         <!-- </div> -->
         <div class="row">
-          <div class="col-3">
+          <div class="col-8">
             <!-- <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Hi there!">
               Tooltip Test
           </button> -->
           </div>
-          <div  class="col-5">
-            <button class="btn btn-primary" (click)="addSubject(true,null)">add subject</button>
+          <div  class="col-1">
+            <a class="btn btn-success" (click)="addSubject(true,null)"><mdb-icon fas icon="plus-circle"></mdb-icon></a>
           </div>
-          <div  class="col-3">
-            <button class="btn btn-primary" (click)="addSubject(false,null)">remove</button>
+          <div  class="col-2">
+            <a class="btn btn-danger" (click)="addSubject(false,null)"><mdb-icon fas icon="minus-circle"></mdb-icon></a>
           </div>
           <div class="col-1">
           </div>

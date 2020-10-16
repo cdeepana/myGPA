@@ -1,7 +1,7 @@
-/* .jumbotron {
-    background: #ecf0f1;
-    color: #c0392b;
-  } */
+.jumbotron {
+  background-color: #ba1c1c3d;
+  margin: 13% 13% 0% 13%;
+  }
 
 .mini-words{
   color: red;
@@ -12,4 +12,8 @@
 
 .btn{
   max-width: 25rem;
+}
+.whiteclass{
+  color: white;
+  font-weight: 400;
 }

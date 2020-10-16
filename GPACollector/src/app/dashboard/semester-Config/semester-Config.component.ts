@@ -32,7 +32,7 @@ export class SemesterConfigComponent implements OnInit {
         if (this.eventEmitterService.subVar == undefined) {
             this.eventEmitterService.subVar = this.eventEmitterService.
             invokeSemesterConfigComponentFunction.subscribe((viewSubject: Object) => {
-                    this.viewSubject = viewSubject
+                    this.viewSubject = viewSubject? viewSubject: null
                     this.dynamicFormCreation();
                 });
         }
@@ -116,7 +116,7 @@ export class SemesterConfigComponent implements OnInit {
             
         this.alertify.success('Successfully updated Semester');
             this.cancelRegister.emit();
-            // window.location.reload()
+            window.location.reload()
         
         },
         error=>{

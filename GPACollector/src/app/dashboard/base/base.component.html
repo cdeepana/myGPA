@@ -1,17 +1,68 @@
 <!-- <body class="base-background"> -->
 <div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured
-    content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="semConfigRerun(null)">
-      create a semester  &#43;
-    </button>
-    <button (click)="getSemDetails()">get sem info</button>
-    <button (click)="getOnetimeConfig()">get one time config</button>
-  </p>
+  <div class="lead">
+    
+
+    
+
+    <!-- <div class="container"> -->
+      <div class="row">
+        <div class="col-3">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="semConfigRerun(null)">
+            <mdb-icon fas icon="plus-circle"></mdb-icon> create a semester 
+          </button>
+        </div>
+
+        <div class="col-4">
+          <div class="card text-white bg-primary " style="max-width: 20rem;">
+            <!-- <div class="card-header">Overall-GPA :  {{ OverallGPA}}</div> -->
+
+            <mdb-card cascade="true" wider="true">
+              <div class="view view-cascade gradient-card-header aqua-gradient">
+                <h2 class="card-header-title mb-12">Overall-GPA :  {{ OverallGPA}}</h2>
+              </div>
+            </mdb-card>
+            
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="card text-white bg-primary " style="max-width: 95%;">
+            <!-- <div class="card-header">Awarded Classes: {{awardedClass}}</div> -->
+
+            <mdb-card cascade="true" wider="true">
+              <div class="view view-cascade gradient-card-header aqua-gradient">
+                <h2 class="card-header-title mb-12">Awarded Classes: {{awardedClass}}</h2>
+              </div>
+            </mdb-card>
+            
+          </div>
+        </div>
+
+
+        <!-- 222222222222222 -->
+
+        <!-- <div class="row">
+          <div class="col">
+            
+            <mdb-card cascade="true" wider="true">
+              <div class="view view-cascade gradient-card-header aqua-gradient">
+                <h2 class="card-header-title mb-2">Title of the news</h2>
+              </div>
+              <mdb-card-body cascade="true" class="text-center">
+                <mdb-card-text>
+                </mdb-card-text>
+              </mdb-card-body>
+            </mdb-card>
+          </div>
+        </div> -->
+
+        <!-- 222222222222222 -->
+      </div>
+     
+    <!-- </div> -->
+    <!-- <button (click)="getSemDetails()">get sem info</button> -->
+    <!-- <button (click)="getOnetimeConfig()">get one time config</button> -->
+  </div>
 </div>
 <!-- Semester creation Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -29,33 +80,73 @@
       <div class="card-align">
         <div class="card base-background">
           <div class="card-body">
-            <div *ngIf="semDetails[i].yearOfSem==1">
-              <h2 class="card-title">{{sem.yearOfSem}} <sup>st</sup> year</h2>
+            <div class="row stylecard" >
+              <span>
+                <div *ngIf="semDetails[i].yearOfSem==1">
+                <h2 class="card-title">{{sem.yearOfSem}} <sup>st</sup> year</h2>
+              </div>
+              <div *ngIf="semDetails[i].yearOfSem==2">
+                <h2 class="card-title">{{sem.yearOfSem}} <sup>nd</sup> year</h2>
+              </div>
+              <div *ngIf="semDetails[i].yearOfSem==3">
+                <h2 class="card-title">{{sem.yearOfSem}} <sup>rd</sup> year</h2>
+              </div>
+              <div *ngIf="semDetails[i].yearOfSem >=4">
+                <h2 class="card-title">{{sem.yearOfSem}} <sup>th</sup> year</h2>
+              </div></span>
+              <span style="padding-left: 15px;"><h2 class="card-title">Semester: {{sem.numberOfSem}}</h2></span>
             </div>
-            <div *ngIf="semDetails[i].yearOfSem==2">
-              <h2 class="card-title">{{sem.yearOfSem}} <sup>nd</sup> year</h2>
-            </div>
-            <div *ngIf="semDetails[i].yearOfSem==3">
-              <h2 class="card-title">{{sem.yearOfSem}} <sup>rd</sup> year</h2>
-            </div>
-            <div *ngIf="semDetails[i].yearOfSem >=4">
-              <h2 class="card-title">{{sem.yearOfSem}} <sup>th</sup> year</h2>
-            </div>
-            <h3 class="card-title">Semester: {{sem.numberOfSem}}</h3>
+            
+            
             <ul class="list-group list-group-flush">
               <div class="card-header">
-                Subject count {{semDetails[i].semInfo[0].length}}
+                Subject count : {{semDetails[i].semInfo[0].length}} 
               </div>
-              <li  class="list-group-item">Good    : <a id="good"> {{semDetails[i].semInfo[1]['Good']}}</a></li>
+              <div class="card-header"> 
+                <span class="badge badge-dark">sGPA
+                </span> 
+               <span> 
+                 {{semDetails[i].semInfo[1]['sGpaView']}}</span>
+               </div>
+              <!-- <li  class="list-group-item">Good    : <a id="good"> {{semDetails[i].semInfo[1]['Good']}}</a></li>
               <li  class="list-group-item">Medium  : <a id="medium">{{semDetails[i].semInfo[1]['Medium']}}</a> </li>
               <li  class="list-group-item">Weak    : <a id="weak">{{semDetails[i].semInfo[1]['Weak']}}</a> </li>
-              <li  class="list-group-item">sGPA    : <a >{{semDetails[i].semInfo[1]['sGpaView']}}</a> </li>
+              <li  class="list-group-item">sGPA    : <a >{{semDetails[i].semInfo[1]['sGpaView']}}</a> </li> -->
+              <div>
+                <canvas mdbChart
+                    [chartType]="chartType"
+                    [datasets]=chartDatasets[i]
+                    [labels]="chartLabels"
+                    [colors]="chartColors"
+                    [options]="chartOptions"
+                    [legend]="true"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+                   
+                </canvas>
+              </div>
             </ul>
             <div style="padding-top: 5px;" class="row">
-              <div class="col-7"></div>
-              <div class="col-4">
+
+
+              <div class="col-5">
+              </div>
+
+
+              <!-- <div class="card-header row"> -->
+                <!-- Subject count : {{semDetails[i].semInfo[0].length}}  -->
+                <!-- <span class="badge badge-dark">sGPA:</span> <span> 
+                  {{semDetails[i].semInfo[1]['sGpaView']}}</span>
+              </div> -->
+
+
+
+
+
+
+              <div class="col-6">
                 <button (click)="viewSem(i)" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalLong">
-               more
+                <mdb-icon fas icon="ellipsis-v"></mdb-icon> more
              </button>
            </div>
            <div class="col-1"></div>
@@ -69,6 +160,25 @@
   </div>
   </div>
 <!--  start card view in base UI   -->
+
+
+
+<!--  2222222222222222222222222 -->
+<!-- 
+<div style="display: block ;width: 230px;height: 230px;">
+  <canvas mdbChart
+      [chartType]="chartType"
+      [datasets]="chartDatasets"
+      [labels]="chartLabels"
+      [colors]="chartColors"
+      [legend]="true"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+     
+  </canvas>
+</div> -->
+
+<!-- 22222222222222222222222222222 -->
 
 <!--POP UP semester view Modal -->
 <div style="padding-top: 30px;" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -122,8 +232,8 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="semConfigRerun(viewSubject)" data-toggle="modal" data-target="#exampleModalCenter" data-dismiss="modal">Edit</button>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteSemModal" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-secondary" (click)="semConfigRerun(viewSubject)" data-toggle="modal" data-target="#exampleModalCenter" data-dismiss="modal"><mdb-icon far icon="edit"></mdb-icon></button>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteSemModal" data-dismiss="modal"><mdb-icon far icon="trash-alt"></mdb-icon></button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" >Close</button>
       </div>
       
@@ -175,3 +285,7 @@
 <div *ngIf="viewSubject.yearOfSem >=4"> 
   <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>th</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
 </div> -->
+
+
+
+

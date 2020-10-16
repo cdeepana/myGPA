@@ -16,13 +16,7 @@ function RegisterController(req,res) {
                 console.log("saved user data 4=>",data, "data._id", data._id);
                 const token = jwt.sign({ email: data.email }, process.env.refresh_token_secret,{expiresIn: '1h'})
                 
-               
                 return res.status(201).send({UserID: data._id,token: token})
-                 
-        //         );
-        // return res.json({msg: "OK"});
-
-                // return res.status(201).json({msg: 'user created'});
         }).catch(err => {
                 return res.status(404).send({errormsg: 'User creation failed'+ err})
         });

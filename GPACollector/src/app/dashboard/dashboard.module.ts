@@ -14,20 +14,21 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import {MatTableModule} from '@angular/material/table';
-import {InitializationComponent} from './initialization/initialization.component';
 import { BaseComponent } from './base/base.component';
 import { SemesterConfigComponent } from './semester-Config/semester-Config.component';
-import { TestComponent } from './test/test.component';
+import { OtcComponent } from './otc/otc.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
 
 @NgModule({
   declarations: [
-    InitializationComponent,
     BaseComponent,
     SemesterConfigComponent,
-    TestComponent
+    OtcComponent,
+    SettingsComponent
   ],
   imports: [
     FormsModule,
@@ -43,7 +44,8 @@ import { TestComponent } from './test/test.component';
     MatSlideToggleModule,
     MatCardModule,
     DashboardRoutingModule,
-    CommonModule
+    CommonModule,
+    MDBBootstrapModule.forRoot()
   ]
 })
 

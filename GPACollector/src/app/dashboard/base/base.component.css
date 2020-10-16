@@ -1,7 +1,33 @@
 
-  
+@media only screen and (min-width: 576px){
+  .jumbotron {
+    padding: 1rem 2rem;  
+    background-color:#194d0e1a;;
+}
+}
+
+
+
 .base-background{
     background-color:#b0b0b0;
+    min-width: 249px;
+    max-width: 320px;
+}
+
+.col-6{
+  left: 19%;
+}
+
+.stylecard{
+  margin: 4px;
+}
+
+.card-header-title{
+  text-align: center;
+}
+
+h2{
+  margin: 16px 0px;
 }
 
 /*  */

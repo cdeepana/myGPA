@@ -1,0 +1,323 @@
+
+<div class="container" >
+<mat-horizontal-stepper linear #stepper>
+  <mat-step  >
+    
+      <div class="row" >
+        <div class="col-2"></div>
+        <div class="col-8">
+    
+          <div class="card">
+            <h5 class="card-title">Grade / Grade Point Initialization</h5>
+         
+          <form (ngSubmit)="onSubmit(heroForm.form.value)" #heroForm="ngForm">
+    
+            
+              <div class="row">
+                <div class="form-group">
+                  <span>
+                    <input  class="skinny form-control"  type="number" placeholder="Enter A+ credit value" id="name" required [(ngModel)]="model.Ctrl_A_plus" name="Ctrl_A_plus" >
+                    <label for="english">A+</label>
+                  </span>
+                </div>
+              </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter A credit value" id="name" required [(ngModel)]="model.Ctrl_A" name="Ctrl_A"/>
+                  <label for="english">A</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter A- credit value" id="name" required [(ngModel)]="model.Ctrl_A_minus" name="Ctrl_A_minus"/>
+                  <label for="english">A-</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter B+ credit value" id="name" required [(ngModel)]="model.Ctrl_B_plus" name="Ctrl_B_plus"/>
+                  <label for="english">B+</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter B credit value" id="name" required [(ngModel)]="model.Ctrl_B" name="Ctrl_B"/>
+                  <label for="english">B</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter B- credit value" id="name" required [(ngModel)]="model.Ctrl_B_minus" name="Ctrl_B_minus"/>
+                  <label for="english">B-</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter C+ credit value" id="name" required [(ngModel)]="model.Ctrl_C_plus" name="Ctrl_C_plus"/>
+                  <label for="english">C+</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter C credit value" id="name" required [(ngModel)]="model.Ctrl_C" name="Ctrl_C"/>
+                  <label for="english">C</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter C- credit value" id="name" required [(ngModel)]="model.Ctrl_C_minus" name="Ctrl_C_minus"/>
+                  <label for="english">C-</label>
+                </span>
+              </div>
+            </div>
+    
+    
+            <mat-checkbox class="example-margin" (click)="checked()" style="padding-left: 12px;">Add grade D<sup>+</sup></mat-checkbox>
+    
+            <div class="row" *ngIf="isDplus" >
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter D+ credit value" id="name" required [(ngModel)]="model.Ctrl_D_plus" name="Ctrl_D_plus"/>
+                  <label for="english">D+</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter D grade credit value" id="name" required [(ngModel)]="model.Ctrl_D" name="Ctrl_D"/>
+                  <label for="english">D</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter I grade credit value" id="name" required [(ngModel)]="model.Ctrl_I" name="Ctrl_I"/>
+                  <label for="english">I</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="form-group">
+                <span>
+                  <input  class="skinny form-control"  type="number" placeholder="Enter F grade credit value" id="name" required [(ngModel)]="model.Ctrl_F" name="Ctrl_F"/>
+                  <label for="english">F</label>
+                </span>
+              </div>
+            </div>
+    
+            <div class="row">
+              <div class="col"> 
+                <span>
+                <button (click)="reset()"  class="btn btn-success " >Reset <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                </svg></button>
+              </span>
+              </div>
+              <div class="col"> 
+                <span>
+                <button mat-button matStepperNext type="submit" class="btn btn-success " [disabled]="!heroForm.form.valid" >Save & Next  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg></button>
+
+                
+              </span>
+              </div>
+               </div>
+               <!-- <div>
+                <button mat-button matStepperNext>Next</button>
+              </div> -->
+            
+        
+          </form>
+        </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+     
+      
+    
+  </mat-step>
+  <mat-step >
+    
+    <div class="row" >
+      <div class="col-2"></div>
+      <div class="col-8">
+  
+        <div class="card">
+          <h5 class="card-title">Classes Range Initialization</h5>
+          <!-- <div class="card-body">
+            
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div> -->
+        
+  
+        
+        <form (ngSubmit)="onSubmit(heroForm2.form.value)" #heroForm2="ngForm">
+  
+          <div class="row styleClassHead" >
+            <div class="col">Academic Standing</div>
+            <div class="col">Required Minimum GPA</div>
+            <div class="col">Required Maximum GPA</div>
+          </div>
+           
+            <div class="row styleClass">
+              <span class="col"><h3>First Class  : </h3></span>
+              
+              <span class="col">
+                <input class="gate" id="english" type="number" placeholder="min O-GPA for 1st class"  id="name" required [(ngModel)]="model.Ctrl_FirstMin" name="Ctrl_FirstMin"/>
+                <label for="english">min GPA</label>
+              </span>
+              <span class="col">
+                <input class="gate" id="burger" type="number" placeholder="max O-GPA for 1st class" required [(ngModel)]="model.Ctrl_A_plus" name="Ctrl_A_plus"/>
+                <label for="burger">max GPA</label>
+              </span>
+            </div>
+  
+            <div class="row styleClass">
+              <span class="col"><h3>Second Class - Upper Division: </h3></span>
+              
+              <span class="col">
+                <input class="gate" id="english" type="number" placeholder="min O-GPA for 2nd Upper class"  id="name" required [(ngModel)]="model.Ctrl_SecondUpperMin" name="Ctrl_SecondUpperMin"/>
+                <label for="english">min GPA</label>
+              </span>
+              <span class="col">
+                <input class="gate" id="burger" type="number" placeholder="max O-GPA for 2nd Upper class" required [(ngModel)]="model.Ctrl_SecondUpperMax" name="Ctrl_SecondUpperMax"/>
+                <label for="burger">max GPA</label>
+              </span>
+            </div>
+  
+            <div class="row styleClass">
+              <span class="col"><h3>Second Class - Lower Division: </h3></span>
+              
+              <span class="col">
+                <input class="gate" id="english" type="number" placeholder="min O-GPA for 2nd Lower class"  id="name" required [(ngModel)]="model.Ctrl_SecondLowerMin" name="Ctrl_SecondLowerMin"/>
+                <label for="english">min GPA</label>
+              </span>
+              <span class="col">
+                <input class="gate" id="burger" type="number" placeholder="max O-GPA for 2nd Lower class" required [(ngModel)]="model.Ctrl_SecondLowerMax" name="Ctrl_SecondLowerMax"/>
+                <label for="burger">max GPA</label>
+              </span>
+            </div>
+  
+            <div class="row styleClass">
+              <span class="col"><h3>Pass: </h3></span>
+              
+              <span class="col">
+                <input class="gate" id="english" type="number" placeholder="min O-GPA for Academic Pass "  id="name" required [(ngModel)]="model.Ctrl_PassMin" name="Ctrl_PassMin"/>
+                <label for="english">min GPA</label>
+              </span>
+              <span class="col">
+                <input class="gate" id="burger" type="number" placeholder="max O-GPA for Academic Pass" required [(ngModel)]="model.Ctrl_PassMax" name="Ctrl_PassMax"/>
+                <label for="burger">max GPA</label>
+              </span>
+            </div>
+  
+            <div class="row">
+              <div class="col"> 
+                <span>
+                <button mat-button matStepperPrevious  class="btn btn-success " [disabled]="!heroForm.form.valid">Back <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                </svg></button>
+              </span>
+              </div>
+
+            
+
+              <div class="col"> 
+                <span>
+                <button (click)="reset()"  class="btn btn-success " mat-button matStepperPrevious >Reset All <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                </svg></button>
+
+                
+              </span>
+              </div>
+              <div class="col"> 
+                <span>
+                <button mat-button matStepperNext type="submit" class="btn btn-success " [disabled]="!heroForm.form.valid">Save & Next  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg></button>
+              </span>
+              </div>
+
+               </div>
+               <!-- <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+       -->
+      
+      
+        </form>
+      </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+     
+    
+  </mat-step>
+  <mat-step>
+    Please make sure enetered values, because Academic Standing (classes) and GPA calculations based on given values. Do you want to save them ?  
+    <div>
+      <div class="row">
+        <div class="col"> 
+          <span>
+          <button mat-button matStepperPrevious  class="btn btn-success " >Back <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+            <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+          </svg></button>
+        </span>
+        </div>
+
+        <div class="col"> 
+          <span>
+          <button  type="submit" class="btn btn-success "  (click)="OTCSubmit()" >Save <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+          </svg></button>
+        </span>
+        </div>
+
+      </div>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+
+</div>
+

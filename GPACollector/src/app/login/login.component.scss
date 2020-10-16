@@ -1,0 +1,111 @@
+.paddingup{
+    padding-top: 4%;
+}
+
+.col-12{
+  padding-left: 2px;
+}
+
+.stypeLogin{
+  padding-top: 3vh;
+}
+
+.form-group{
+  padding: 8px 50px 4px 25px;
+}
+
+.mat-dialog-container{
+  background: #f6fc97f2;
+}
+
+    .slide-up {
+      display: inline-block;
+      // width: 215px;   
+      max-width: 400px;                                                                           //madee changes
+      padding: 10px 0 10px 15px;
+      font-family: "Open Sans", sans;
+      font-weight: 400;
+      color: #377D6A;
+      background: #efefef;
+      border: 0;
+      border-radius: 3px;
+      outline: 0;
+      text-indent: 80px; // Arbitrary.
+      transition: all .3s ease-in-out;
+      
+      &::-webkit-input-placeholder {
+        color: #efefef;
+        text-indent: 0;
+        font-weight: 300;
+      }
+    
+      + label {
+        display: inline-block;
+        position: absolute;
+        transform: translateX(0);
+        top: -11px;   
+        width: 100px;                                                                                       //made changes
+        left: 0;
+        padding: 10px 15px;
+        text-shadow: 0 1px 0 rgba(19,74,70,.4);
+        transition: all .3s ease-in-out;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        overflow: hidden;
+    
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          right: 0;
+          left: 0;
+          z-index: -1;
+          transition: all .3s ease-in-out;
+        }
+        &:before {
+          // Skinny bit here
+          top: 6px;
+          left: 5px;
+          right: 5px;
+          bottom: 6px;
+          background: #377D6A; // change this to #134A46
+        }
+        &:after {
+          top: 0;
+          bottom: 0;
+          background: #377D6A;
+        }
+      }
+    }
+    span:nth-child(1) .slide-up {
+      text-indent: 105px;
+    }
+    span:nth-child(3) .slide-up {
+      text-indent: 125px;
+    }
+    span:nth-child(1) .slide-up:focus,
+    span:nth-child(1) .slide-up:active,
+    span:nth-child(3) .slide-up:focus,
+    span:nth-child(3) .slide-up:active {
+      text-indent: 0;
+    }
+    .slide-up:focus,
+    .slide-up:active {
+      color: #377D6A;
+      text-indent: 0;
+      background: #fff;
+      
+      &::-webkit-input-placeholder {
+        color: #aaa;
+      }
+      + label {
+        transform: translateY(-100%);
+    
+        &:before {
+          border-radius: 5px;
+        }
+        &:after {
+          transform: translateY(100%);
+        }
+      }
+    }

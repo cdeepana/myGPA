@@ -1,4 +1,5 @@
 
+const { query } = require('express');
 const jwt = require('jsonwebtoken')
 const one_timeConfig = require('../../model/onetimeConfig')
 
@@ -9,7 +10,7 @@ function one_timeConfigController(req,res) {
                 var newConfig = new one_timeConfig();
 
         console.log("dplus",req.body[0].Ctrl_D_plus);
-        newConfig.userID = req.body[2].UserID
+        newConfig.userID = req.body[1].UserID
         newConfig.A_plus = req.body[0].Ctrl_A_plus
         newConfig.A = req.body[0].Ctrl_A
         newConfig.A_minus = req.body[0].Ctrl_A_minus
@@ -24,16 +25,16 @@ function one_timeConfigController(req,res) {
         newConfig.I = req.body[0].Ctrl_I
         newConfig.F = req.body[0].Ctrl_F
 
-        newConfig.class_F_min = req.body[1].Ctrl_FirstMin
-        newConfig.class_SU_min = req.body[1].Ctrl_SecondUpperMin
-        newConfig.class_SU_max = req.body[1].Ctrl_SecondUpperMax
-        newConfig.class_SL_min = req.body[1].Ctrl_SecondLowerMin
-        newConfig.class_SL_max = req.body[1].Ctrl_SecondLowerMax
-        newConfig.class_pass_min = req.body[1].Ctrl_PassMin
-        newConfig.class_pass_max = req.body[1].Ctrl_PassMax
+        newConfig.class_F_min = req.body[0].Ctrl_FirstMin
+        newConfig.class_SU_min = req.body[0].Ctrl_SecondUpperMin
+        newConfig.class_SU_max = req.body[0].Ctrl_SecondUpperMax
+        newConfig.class_SL_min = req.body[0].Ctrl_SecondLowerMin
+        newConfig.class_SL_max = req.body[0].Ctrl_SecondLowerMax
+        newConfig.class_pass_min = req.body[0].Ctrl_PassMin
+        newConfig.class_pass_max = req.body[0].Ctrl_PassMax
 
    
-        one_timeConfig.findOne({userID:req.body[2].UserID}).then(
+        one_timeConfig.findOne({userID:req.body[1].UserID}).then(
                 
                x=>{
                 console.log("one time", x)
@@ -49,7 +50,7 @@ function one_timeConfigController(req,res) {
                        else{
                                console.log("new config FROM else",newConfig);
                    
-                        x.userID = req.body[2].UserID
+                        x.userID = req.body[1].UserID
                         x.A_plus = req.body[0].Ctrl_A_plus
                         x.A = req.body[0].Ctrl_A
                         x.A_minus = req.body[0].Ctrl_A_minus
@@ -64,13 +65,13 @@ function one_timeConfigController(req,res) {
                         x.I = req.body[0].Ctrl_I
                         x.F = req.body[0].Ctrl_F
 
-                        x.class_F_min = req.body[1].Ctrl_FirstMin
-                        x.class_SU_min = req.body[1].Ctrl_SecondUpperMin
-                        x.class_SU_max = req.body[1].Ctrl_SecondUpperMax
-                        x.class_SL_min = req.body[1].Ctrl_SecondLowerMin
-                        x.class_SL_max = req.body[1].Ctrl_SecondLowerMax
-                        x.class_pass_min = req.body[1].Ctrl_PassMin
-                        x.class_pass_max = req.body[1].Ctrl_PassMax
+                        x.class_F_min = req.body[0].Ctrl_FirstMin
+                        x.class_SU_min = req.body[0].Ctrl_SecondUpperMin
+                        x.class_SU_max = req.body[0].Ctrl_SecondUpperMax
+                        x.class_SL_min = req.body[0].Ctrl_SecondLowerMin
+                        x.class_SL_max = req.body[0].Ctrl_SecondLowerMax
+                        x.class_pass_min = req.body[0].Ctrl_PassMin
+                        x.class_pass_max = req.body[0].Ctrl_PassMax
                         x.save().then(data =>{
                                 console.log("data =>",data)
                         return res.json({msg: "OK"});
@@ -87,7 +88,8 @@ function one_timeConfigController(req,res) {
         if(req.method == 'GET'){
 
                 console.log("req.query", req.query.UserID);
-                one_timeConfig.findOne({userID: req.query.UserID}).then(
+                
+                one_timeConfig.findOne({userID: req.query.UserID},('class_F_min class_SU_min class_SU_max class_SL_min class_SL_max class_pass_min class_pass_max')).then(
                         x=>{
                                 if(x){
                                         return res.status(200).json({OTC:x})

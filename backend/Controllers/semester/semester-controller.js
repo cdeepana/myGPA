@@ -162,22 +162,25 @@ function semesterController(req,res) {
     }
 
     else if(req.method == 'GET'){
-        console.log("req.query", req.query.UserID);
+      if (!req.query.UserID) {
+        console.error("semester control req.query.UserID is not found");
+      } else {
         semester.find({userID:req.query.UserID}).then(
-            x=>{
-                console.log(x)
-                if(x){ 
-                return res.status(200).json({semesters: x})
-                }
-                else{
-                   return res.status(404).json({msg: 'no data'})
-                }
-            }
-        )
+          x=>{
+              console.log(x)
+              if(x){ 
+              return res.status(200).json({semesters: x})
+              }
+              else{
+                 return res.status(404).json({msg: 'no data'})
+              }
+          }
+      )
+      }
+        
     }
     else if(req.method == 'DELETE'){
-      console.log("delete method ok", req.query, "req.query.userID",req.query.UserID);
-      
+      console.log("delete method ok", req.query, "req.query.userID",req.query.userID);
       semester.findOneAndDelete({ userID: req.query.userID, yearOfSem : req.query.yearOfSem, numberOfSem: req.query.numberOfSem}).then(responseData => {
         console.log("findone response ========================>", responseData);
         return res.status(200).json({info: "Deleted sem"})

@@ -1,0 +1,17 @@
+ <div class="row">
+  <div class="col-2">
+    <div class="row card">
+      <div class="col-12"> <button  class="btn info">Account</button></div>
+      <div class="col-12"> <button  class="btn info" (click)="OTC()">Configuration</button></div>
+    </div>
+
+  </div>
+
+  <div class="col-10">
+    <div *ngIf="isOTC">
+      
+    <app-otc></app-otc>
+    </div>
+  </div>
+</div> 
+
