@@ -26,18 +26,20 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { Event_emitterCustomService } from './_services/event_emitterCustom.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AboutComponent } from './about/about.component';
 
 
 
 
 
 @NgModule({
-   declarations: [	
+   declarations: [		
       AppComponent,
       HomepageComponent,
       LoginComponent,
       RegisterComponent,
-      NavBarComponent
+      NavBarComponent,
+      AboutComponent
    ],
    imports: [
       // DashboardModule,

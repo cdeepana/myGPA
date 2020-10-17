@@ -12,7 +12,7 @@ export class Event_emitterNavbarService {
 constructor() { }
 
 onNavBarReRun() {
-  console.log("nav event fired");
+  // console.log("nav event fired");
   this.invokeNavBarComponentFunction.emit();
 }
 

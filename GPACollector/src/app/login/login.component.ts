@@ -37,12 +37,12 @@ export class LoginComponent {
     }
   
     onSubmit(data){
-      console.log("loginform =>",data);
+      // console.log("loginform =>",data);
      
       this.authService.validate(data.email, data.password)
       .subscribe((response) => {
         this.alertify.success('Logged in Success');
-        console.log("response ->",response);
+        // console.log("response ->",response);
         this.authService.setUserInfo(response['token']);
         this.dialogRef.close();
   

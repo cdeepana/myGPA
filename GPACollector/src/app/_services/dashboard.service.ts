@@ -11,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class DashboardService {
   UserID
-  OTC
+  OTC: boolean
 
   constructor(private http: HttpClient) {
      
@@ -41,7 +41,7 @@ export class DashboardService {
 
     public getSems(){
       this.UserID = (!!this.UserID)? this.UserID : sessionStorage.getItem('Uid') 
-      console.log("getsem uID====>", this.UserID);
+      // console.log("getsem uID====>", this.UserID);
       let params = new HttpParams();
       params = params.append('UserID',  this.UserID );
       sessionStorage.removeItem('Uid')
@@ -54,13 +54,15 @@ export class DashboardService {
         params = params.append('UserID', this.UserID);
        
         return this.http.get(this.baseUrl + '/getOTC' , {params:params} ).pipe(
+          map(res => {
+            this.OTC = true
+            return res
+          })
         )
-      
-      
     }
     public gatheringUsedID(ID){
       this.UserID = ID;
-      console.log("saved user id", this.UserID);
+      // console.log("saved user id", this.UserID);
     }
 
     public unloadOccuring(){

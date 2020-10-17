@@ -4,10 +4,12 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService as AuthGuard } from '../app/_services/auth-guard.service';
 import { LoggedInAuthGuardService as DeactivateAuthGuard } from '../app/_services/can-deactivate-guard.service';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
   { path: '', component: HomepageComponent ,canActivate: [DeactivateAuthGuard]},
+  { path: 'about', component: AboutComponent },
   // { path: 'dashboard', loadChildren: "./dashboard/dashboard.module#DashboardModule"},
   {
     path: 'dashboard',

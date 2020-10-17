@@ -15,26 +15,7 @@ function semesterController(req,res) {
         one_timeConfig.findOne({ userID: req.body[1].UserID }).then((x) => {
           if (x) {
             // return res.status(200).json({OTC:x})
-//   A_plus: 4.2,
-//   A: 4,
-//   A_minus: 3.7,
-//   B_plus: 3.3,
-//   B: 3,
-//   B_minus: 2.7,
-//   C_plus: 2.3,
-//   C: 2,
-//   C_minus: 1.5,
-//   D_plus: 0,
-//   D: 1,
-//   I: 0,
-//   F: 0,
-//   class_F_min: 3.7,
-//   class_SU_min: 3.3,
-//   class_SU_max: 3.69,
-//   class_SL_min: 3,
-//   class_SL_max: 3.29,
-//   class_pass_min: 2,
-//   class_pass_max: 2.99,
+
             // console.log("semester config retrieved OTC data", x,"x.A_minus",x.A_minus,"x['A_minus']",x['A_minus'],"typeof(x['A_minus'])",typeof(x['A_minus']));
             req.body[0].subS.forEach((subject,index) => {
                 let y = subject.subjectGrade

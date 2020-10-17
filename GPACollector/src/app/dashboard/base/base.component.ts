@@ -1,4 +1,6 @@
 import { Component, OnInit , HostListener } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 import { DashboardService } from 'src/app/_services/dashboard.service';
 import { Event_emitterCustomService } from 'src/app/_services/event_emitterCustom.service';
 import { Event_emitterNavbarService } from 'src/app/_services/event_emitterNavbar.service';
@@ -38,7 +40,7 @@ export class BaseComponent implements OnInit {
   // finished
 
 
-  constructor(private dashboardService: DashboardService, private eventEmitterService : Event_emitterCustomService, private navbarRefreshService: Event_emitterNavbarService ) {
+  constructor(private dashboardService: DashboardService, private eventEmitterService : Event_emitterCustomService, private navbarRefreshService: Event_emitterNavbarService, private route: Router ,private alertify: AlertifyService) {
 
     
    }
@@ -63,7 +65,7 @@ export class BaseComponent implements OnInit {
     this.dashboardService.getSems().subscribe(data=>{
       this.semDetails = data;
       this.semDetails = this.semDetails.semesters
-      console.log("data get sem", this.semDetails);
+      // console.log("data get sem", this.semDetails);
       this.chartDatasets = []
       this.chartDataSetCreation();
     this.getOnetimeConfig()
@@ -76,17 +78,8 @@ export class BaseComponent implements OnInit {
     this.semDetails.forEach(element => {
       // element.semInfo[1].Good
       this.chartDatasets.push([{data: [element.semInfo[1].Good, element.semInfo[1].Medium, element.semInfo[1].Weak] }])
-      console.log("this cart", this.chartDatasets);
+      // console.log("this cart", this.chartDatasets);
     });
-
-    // for (let index = 0; index < this.semDetails.length; index++) {
-    //   // const element = array[index];
-    //     console.log("for loop");
-    // }
-    
-    // this.chartDatasets.push([{data: [300, 50, 100]}]);
-    // this.chartDatasets.push({data:  [60, 250, 80]});
-    console.log("this cart", this.chartDatasets);
     return ;
   }
 
@@ -102,6 +95,8 @@ export class BaseComponent implements OnInit {
       // console.log("get OTC",data['OTC']);
       this.miniCal(data['OTC'])
     },error=>{
+      this.route.navigate(['dashboard/settings'])
+      this.alertify.error('First Update Configurations')
       console.log("error", error);
     })
   }
@@ -121,29 +116,29 @@ export class BaseComponent implements OnInit {
     });
 
     this.OverallGPA = (x/y).toFixed(4);
-    console.log("overall gpa", this.OverallGPA ) ;
-    console.log("OTC in mini cal",OTC);
+    // console.log("overall gpa", this.OverallGPA ) ;
+    // console.log("OTC in mini cal",OTC);
     clzValue = x/y
    
 
     if(clzValue >= OTC.class_F_min){
-      console.log("First Class");
+      // console.log("First Class");
       this.awardedClass = "First Class"
     }
     else if( clzValue >= OTC.class_SU_min ){
-      console.log("Second Upper",OTC.class_SU_max,clzValue,OTC.class_SU_min);
+      // console.log("Second Upper",OTC.class_SU_max,clzValue,OTC.class_SU_min);
       this.awardedClass = " Second Class-Upper Division"
     }
     else if( clzValue >= OTC.class_SL_min ){
-      console.log("Second Lower",OTC.class_SL_max,clzValue,OTC.class_SL_min);
+      // console.log("Second Lower",OTC.class_SL_max,clzValue,OTC.class_SL_min);
       this.awardedClass = "Second Class-Lower Division"
     }
     else if( clzValue >= OTC.class_pass_min ){
-      console.log("Pass",OTC.class_pass_max,clzValue,OTC.class_pass_min);
+      // console.log("Pass",OTC.class_pass_max,clzValue,OTC.class_pass_min);
       this.awardedClass = "Academic Pass"
     }
     else{      
-      console.log("failed");
+      // console.log("failed");
       this.awardedClass = "Academic Failed"
     }
 
@@ -154,7 +149,7 @@ export class BaseComponent implements OnInit {
   }
 
   cancelRegisterMode() {
-    console.log("clicked");
+    // console.log("clicked");
     this.ngOnInit();
   }
 

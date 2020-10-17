@@ -30,11 +30,11 @@ export class RegisterComponent {
     }
   
     onSubmit(data){
-      console.log("register form =>",data);
+      // console.log("register form =>",data);
      
       this.authService.createUser(data.username,data.email, data.password)
       .subscribe((response) => {
-        console.log("response ->",response);
+        // console.log("response ->",response);
         this.alertify.success('Registration Success');
         this.authService.setUserInfo(response['token']);
         this.dialogRef.close();

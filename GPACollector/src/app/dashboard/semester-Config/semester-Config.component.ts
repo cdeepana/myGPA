@@ -1,5 +1,6 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import {FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 import 'bootstrap'
 import { disable } from 'colors';
@@ -25,7 +26,7 @@ export class SemesterConfigComponent implements OnInit {
   viewSubject : any
 
   constructor(private formBuilder: FormBuilder,private dashboardService: DashboardService,
-    private eventEmitterService: Event_emitterCustomService, private alertify: AlertifyService) { }
+    private eventEmitterService: Event_emitterCustomService, private alertify: AlertifyService, private route: Router) { }
 
     ngOnInit() {
 
@@ -111,8 +112,8 @@ export class SemesterConfigComponent implements OnInit {
         data.yearOfSem = parseInt(data.yearOfSem);  
         data.numberOfSem = parseInt(data.numberOfSem); 
         // console.log("new sem form",data);
-        console.log("testing data002", data);
-        this.dashboardService.createOrUpdateSem(data).subscribe((res)=>{
+        // console.log("testing data002", data);
+        this.dashboardService.createOrUpdateSem(data).subscribe(res=>{
             
         this.alertify.success('Successfully updated Semester');
             this.cancelRegister.emit();
@@ -120,16 +121,17 @@ export class SemesterConfigComponent implements OnInit {
         
         },
         error=>{
-            console.log(error)
-            this.alertify.error('Updating Semester Error Occured');
+            console.log("error",error)
+            this.route.navigate(['dashboard/settings'])
+            this.alertify.error('Please Update Configuaraion First');
         })
     }
 
     testing(data){
-        console.log("teesting event pass binding",data);
-        console.log("length of subject array",data.semInfo[0].length);
+        // console.log("teesting event pass binding",data);
+        // console.log("length of subject array",data.semInfo[0].length);
         data.semInfo[0].forEach((element,index) => {
-            console.log("elemtn",index,element);
+            // console.log("elemtn",index,element);
             this.addSubject(true,element);
         });
         // this.addSubject(true);

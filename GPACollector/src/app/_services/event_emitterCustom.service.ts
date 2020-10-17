@@ -12,7 +12,7 @@ export class Event_emitterCustomService {
 constructor() { }
 
 onSemConfigReRun(data:any) {
-  console.log(data);
+  // console.log(data);
   this.invokeSemesterConfigComponentFunction.emit(data);
 }
 

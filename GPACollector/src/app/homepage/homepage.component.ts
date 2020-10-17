@@ -16,13 +16,13 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
   }
   Login(): void {
-    console.log("clickd login");
+    // console.log("clickd login");
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '500px',
     });
 
     dialogRef.afterClosed().subscribe(data => {
-      console.log('The dialog was closed data is :',data);
+      // console.log('The dialog was closed data is :',data);
       if(data=="regUser"){
         this.register();
       }
@@ -30,13 +30,13 @@ export class HomepageComponent implements OnInit {
   }
 
   register(): void {
-    console.log("clickd reg");
+    // console.log("clickd reg");
     const dialogRef = this.dialog.open(RegisterComponent, {
       width: '500px',
     });
 
     dialogRef.afterClosed().subscribe(data => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       if(data=="loginUser"){
         this.Login();
       }

@@ -24,10 +24,16 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  goHOme(){
+  gohome(){
     if (this.isLogged) {
       this.route.navigate(['dashboard/base'])
     }
+    else{
+      this.route.navigate([''])
+    }
+  }
+  about(){
+    this.route.navigate(['about'])
   }
 
   logout(){

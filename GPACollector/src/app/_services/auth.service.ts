@@ -35,16 +35,16 @@ export class AuthService {
   }
 
   setUserInfo(user){
-    console.log("user -->",user);
+    // console.log("user -->",user);
     localStorage.setItem('token', user);
   }
 
   validate(email, password) {
-    console.log(email,password);
+    // console.log(email,password);
     // return this.http.post(this.baseUrl+"/login", {'username' : email, 'password' : password}).toPromise()
     return this.http.post(this.baseUrl+"/login", {'email' : email, 'password' : password}).pipe(
       map(res=>{
-         console.log("x value",res)
+        //  console.log("x value",res)
         //  console.log("XXXXXXXXXX",JSON.stringify(res[1]));
         
         this.dashboard.gatheringUsedID(res['UserID']);
@@ -61,7 +61,7 @@ export class AuthService {
   }
 
   createUser(username,email, password) {
-    console.log("xx",username,email,password);
+    // console.log("xx",username,email,password);
     // return this.http.post(this.baseUrl+"/login", {'username' : email, 'password' : password}).toPromise()
     return this.http.post(this.baseUrl+"/register", {'username' : username, 'email':email, 'password' : password}).pipe(
 
