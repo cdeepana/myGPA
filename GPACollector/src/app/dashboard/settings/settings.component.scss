@@ -22,8 +22,6 @@
     display: inline-block;
     width: 100%;
   }
-  .btn:hover{
-  }
   
   /* Green */
   .success {
@@ -46,32 +44,23 @@
     color: white;
     font-weight: 300;
   }
+
+
+
+
+
+
+@media only screen and (max-width:1102px) and (min-width:980){
+  .not-mini{
+    font-size: 13px;
+  }
+}
+
   
-  /* Orange */
-  .warning {
-    color: orange;
+
+@media only screen and (max-width:979px){
+  .not-mini{
+    display: none;
   }
   
-  .warning:hover {
-    background: #ff9800;
-    color: white;
-  }
-  
-  /* Red */
-  .danger {
-    color: red;
-  }
-  
-  .danger:hover {
-    background: #f44336;
-    color: white;
-  }
-  
-  /* Gray */
-  .default {
-    color: black;
-  }
-  
-  .default:hover {
-    background: #e7e7e7;
-  }
+}

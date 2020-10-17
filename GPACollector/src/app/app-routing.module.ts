@@ -7,7 +7,7 @@ import { LoggedInAuthGuardService as DeactivateAuthGuard } from '../app/_service
 
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent },
+  { path: '', component: HomepageComponent ,canActivate: [DeactivateAuthGuard]},
   // { path: 'dashboard', loadChildren: "./dashboard/dashboard.module#DashboardModule"},
   {
     path: 'dashboard',

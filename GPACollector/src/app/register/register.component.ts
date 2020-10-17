@@ -41,8 +41,11 @@ export class RegisterComponent {
         this.router.navigate(['dashboard/initialization']);
   
       },error=>{
-          console.log(error);
-          this.alertify.error('Registration Unsuccessful, Retry');
+          // console.log("error rees",error.error[Object.keys(error.error)[0]]);  // this would be needed future
+          this.alertify.error(error.error.errormsg);
+
+          
+          // console.log(errormsg);
           // this.registerForm.reset()
         
       })

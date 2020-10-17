@@ -8,9 +8,9 @@ import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
-  {path: 'base' , component: BaseComponent},
+  {path: 'base' , component: BaseComponent,canActivate:[AuthGuard]},
   {path: 'initialization' , component: OtcComponent},
-  {path: 'settings' , component: SettingsComponent}
+  {path: 'settings' , component: SettingsComponent,canActivate:[AuthGuard]}
 
 ];
 

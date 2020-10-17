@@ -1,6 +1,7 @@
 import { Component, OnInit , HostListener } from '@angular/core';
 import { DashboardService } from 'src/app/_services/dashboard.service';
 import { Event_emitterCustomService } from 'src/app/_services/event_emitterCustom.service';
+import { Event_emitterNavbarService } from 'src/app/_services/event_emitterNavbar.service';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class BaseComponent implements OnInit {
   // finished
 
 
-  constructor(private dashboardService: DashboardService, private eventEmitterService : Event_emitterCustomService ) {
+  constructor(private dashboardService: DashboardService, private eventEmitterService : Event_emitterCustomService, private navbarRefreshService: Event_emitterNavbarService ) {
 
     
    }
@@ -49,6 +50,7 @@ export class BaseComponent implements OnInit {
 
   ngOnInit() {
     // window.location.reload()
+    this.navbarRefreshService.onNavBarReRun()
     this.getSemDetails()
   }
 
@@ -62,6 +64,7 @@ export class BaseComponent implements OnInit {
       this.semDetails = data;
       this.semDetails = this.semDetails.semesters
       console.log("data get sem", this.semDetails);
+      this.chartDatasets = []
       this.chartDataSetCreation();
     this.getOnetimeConfig()
     },error=>{

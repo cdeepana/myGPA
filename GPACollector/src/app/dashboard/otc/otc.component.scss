@@ -1,7 +1,9 @@
 .card{
   border: 0;
   background-color: #00000000;
+  box-shadow: none;
 }
+@media only screen and (min-width: 769px){
 button{
   display: inline-block;
   width: 215px;
@@ -16,6 +18,45 @@ button{
   outline: 0;
   // text-indent: 75px;
   transition: all 0.3s ease-in-out;
+}
+}
+
+@media only screen and (max-width :768px) and (min-width:426px) {
+  button{
+    width: 120px;
+    padding: 0;
+    font-size: inherit;
+    display: inline-block;
+  
+    font-family: cursive;
+    font-weight: 600;
+    color: #172029;
+    background: #efefef;
+    border-radius: 24px;
+    border-width: initial;
+    outline: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+}
+
+@media only screen and (max-width :425px) {
+  button{
+    width: 90px;
+    padding: 0;
+    font-size: smaller;
+    display: inline-block;
+
+    font-family: cursive;
+    font-weight: 600;
+    color: #172029;
+    background: #efefef;
+    border-radius: 24px;
+    border-width: initial;
+    outline: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
 }
 
 .styleClassHead{
@@ -34,10 +75,57 @@ button{
   font-size: 116%;
   font-family: cursive;
 }
-.mat-stepper-horizontal, .mat-stepper-vertical {
-  background-color:#d8eb7b
-  
+.mat-stepper-horizontal {
+  background-color:#d8eb7b;
+  margin-bottom: 64%;
 }
+.mat-stepper-vertical {
+  background-color:#d8eb7b;
+  margin-bottom: 25%;
+}
+
+
+@media only screen and (max-width: 1200px) and (min-width:768px){
+  .StyleclassesRange{
+    font-size: small;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .StyleclassesRange{
+    font-size: small;
+  }
+  h3{
+    font-size: x-small;
+  }
+
+  .container{
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
+
+  }
+}
+
+.mini{
+  display: none;
+}
+@media only screen and (max-width:573px){
+  .not-mini{
+    display: none;
+  }
+  .mini{
+    display: block;
+  }
+
+  // .col-2 h3{
+  //   display: none;
+  // }
+  
+
+}
+
+
 
 
 
@@ -104,7 +192,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    padding: 10px 15px;
+    padding: 10px 15px;    
+    // padding: 4px 15px;
     text-shadow: 0 1px 0 rgba(19,74,70,.4);
     background: #7AB893;
     transition: all .4s ease-in-out;

@@ -4,6 +4,7 @@ import { AlertifyService} from '../../_services/alertify.service'
 import { DashboardService } from 'src/app/_services/dashboard.service'
 
 import {modelOTC} from './model-OTC';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-otc',
@@ -17,7 +18,7 @@ export class OtcComponent implements OnInit {
   // model = new modelOTC(4.2, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.5, 1.3, 1.0, 0, 0, 3.7, 3.30, 3.69, 3.00, 3.29, 2.00, 2.99);
     model = new modelOTC(4.2, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.5, 1.3, 1.0, 0, 0, 3.7, 3.30, 3.69, 3.00, 3.29, 2.00, 2.99);
 
-  constructor(private router : Router,private alertify: AlertifyService, private dashboardService: DashboardService) { }
+  constructor(private router : Router,private alertify: AlertifyService, private dashboardService: DashboardService , private authService : AuthService) { }
 
   ngOnInit() {
     this.model = new modelOTC(4.2, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.5, 0, 1.0, 0, 0, 3.7, 3.30, 3.69, 3.00, 3.29, 2.00, 2.99);
@@ -58,7 +59,9 @@ export class OtcComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.alertify.error("Unsuccessful update, Try again")
+        this.alertify.error("Warning, Log In first and Try again")
+        this.authService.removeUserInfo();
+        this.router.navigate([''])
       }
     )
   }

@@ -136,7 +136,7 @@
             <div class="row">
               <div class="col"> 
                 <span>
-                <button (click)="reset()"  class="btn btn-success " >Reset <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button mat-button (click)="reset()"  class="btn btn-success " >Reset <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
                   <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
                 </svg></button>
@@ -170,10 +170,10 @@
   <mat-step >
     
     <div class="row" >
-      <div class="col-2"></div>
-      <div class="col-8">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8 col-md-12">
   
-        <div class="card">
+        <div class="card StyleclassesRange">
           <h5 class="card-title">Classes Range Initialization</h5>
           <!-- <div class="card-body">
             
@@ -192,52 +192,52 @@
           </div>
            
             <div class="row styleClass">
-              <span class="col"><h3>First Class  : </h3></span>
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-2 "><h3><p class="not-mini">First Class  :</p> <p class="mini">1 <sup>st</sup></p> </h3></span>
               
-              <span class="col">
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5 ">
                 <input class="gate" id="english" type="number" placeholder="min O-GPA for 1st class"  id="name" required [(ngModel)]="model.Ctrl_FirstMin" name="Ctrl_FirstMin"/>
                 <label for="english">min GPA</label>
               </span>
-              <span class="col">
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5 ">
                 <input class="gate" id="burger" type="number" placeholder="max O-GPA for 1st class" required [(ngModel)]="model.Ctrl_A_plus" name="Ctrl_A_plus"/>
                 <label for="burger">max GPA</label>
               </span>
             </div>
   
             <div class="row styleClass">
-              <span class="col"><h3>Second Class - Upper Division: </h3></span>
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-2 "><h3><p class="not-mini">Second Class - Upper Division:</p> <p class="mini">2<sup>nd</sup> upper</p></h3></span>
               
-              <span class="col">
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5 ">
                 <input class="gate" id="english" type="number" placeholder="min O-GPA for 2nd Upper class"  id="name" required [(ngModel)]="model.Ctrl_SecondUpperMin" name="Ctrl_SecondUpperMin"/>
                 <label for="english">min GPA</label>
               </span>
-              <span class="col">
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5 ">
                 <input class="gate" id="burger" type="number" placeholder="max O-GPA for 2nd Upper class" required [(ngModel)]="model.Ctrl_SecondUpperMax" name="Ctrl_SecondUpperMax"/>
                 <label for="burger">max GPA</label>
               </span>
             </div>
   
             <div class="row styleClass">
-              <span class="col"><h3>Second Class - Lower Division: </h3></span>
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-2 "><h3><p class="not-mini">Second Class - Lower Division: </p> <p class="mini">2<sup>nd</sup> lower</p></h3></span>
               
-              <span class="col">
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5 ">
                 <input class="gate" id="english" type="number" placeholder="min O-GPA for 2nd Lower class"  id="name" required [(ngModel)]="model.Ctrl_SecondLowerMin" name="Ctrl_SecondLowerMin"/>
                 <label for="english">min GPA</label>
               </span>
-              <span class="col">
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5 ">
                 <input class="gate" id="burger" type="number" placeholder="max O-GPA for 2nd Lower class" required [(ngModel)]="model.Ctrl_SecondLowerMax" name="Ctrl_SecondLowerMax"/>
                 <label for="burger">max GPA</label>
               </span>
             </div>
   
             <div class="row styleClass">
-              <span class="col"><h3>Pass: </h3></span>
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-2 "><h3>Pass: </h3></span>
               
-              <span class="col">
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5 ">
                 <input class="gate" id="english" type="number" placeholder="min O-GPA for Academic Pass "  id="name" required [(ngModel)]="model.Ctrl_PassMin" name="Ctrl_PassMin"/>
                 <label for="english">min GPA</label>
               </span>
-              <span class="col">
+              <span class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5 ">
                 <input class="gate" id="burger" type="number" placeholder="max O-GPA for Academic Pass" required [(ngModel)]="model.Ctrl_PassMax" name="Ctrl_PassMax"/>
                 <label for="burger">max GPA</label>
               </span>
@@ -285,7 +285,7 @@
         </form>
       </div>
       </div>
-      <div class="col-2"></div>
+      <div class="col-lg-2"></div>
     </div>
      
     
@@ -305,7 +305,7 @@
 
         <div class="col"> 
           <span>
-          <button  type="submit" class="btn btn-success "  (click)="OTCSubmit()" >Save <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <button mat-button  type="submit" class="btn btn-success "  (click)="OTCSubmit()" >Save <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
           </svg></button>

@@ -15,7 +15,7 @@ export class LoggedInAuthGuardService implements  CanActivate {
   canActivate(){
 
     if(this.authService.isAuthenticated()){
-      this.route.navigate(['home']);
+      this.route.navigate(['dashboard/base']);
       return false;
     }
     

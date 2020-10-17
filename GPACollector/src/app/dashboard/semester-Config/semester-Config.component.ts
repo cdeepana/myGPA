@@ -116,7 +116,7 @@ export class SemesterConfigComponent implements OnInit {
             
         this.alertify.success('Successfully updated Semester');
             this.cancelRegister.emit();
-            window.location.reload()
+            // window.location.reload()
         
         },
         error=>{

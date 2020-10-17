@@ -1,4 +1,42 @@
 
+
+@media only screen and (max-width: 1200px) and (min-width: 1121px){
+  .container{
+    max-width: 80vw;
+  }
+
+  .card {
+    width: 235px;
+}
+}
+@media only screen and (max-width: 1124px)  and (min-width: 1024px){
+  .container{
+    max-width: 86vw;
+  }
+
+  .card {
+    width: 235px;
+}
+}
+
+@media only screen and (max-width: 1023px){
+  .container{
+    max-width: 86vw;
+  }
+
+  .card {
+    width: 235px;
+}
+.responsiveTest{
+  font-size: smaller;
+}
+}
+
+
+.jumbotron {
+    background-color:#194d0e1a;;
+}
+
 @media only screen and (min-width: 576px){
   .jumbotron {
     padding: 1rem 2rem;  
@@ -49,3 +87,23 @@ h2{
 #good,#medium,#weak{
   font-weight: 500;
 }
+
+
+
+
+.col-lg-3{
+  margin: 0 15px 0 15px;
+}
+
+/* .W50{
+  width: 50%;
+}
+
+.W20{
+  width: 20%;
+}
+
+.W30{
+  width: 30%;
+} */
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
+import { Event_emitterNavbarService } from '../_services/event_emitterNavbar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,17 +10,31 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  isLogged:boolean
 
-  constructor(private authService: AuthService, private alertify: AlertifyService, private route: Router) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService, private route: Router, private navbarRefreshService: Event_emitterNavbarService) {}
 
   ngOnInit() {
-    
+
+    if (this.navbarRefreshService.subVar == undefined) {
+      this.navbarRefreshService.subVar = this.navbarRefreshService.
+      invokeNavBarComponentFunction.subscribe((viewSubject: Object) => {
+              this.isLogged= true
+          });
+    }
+  }
+
+  goHOme(){
+    if (this.isLogged) {
+      this.route.navigate(['dashboard/base'])
+    }
   }
 
   logout(){
     this.authService.removeUserInfo();
     this.route.navigate([''])
     this.alertify.message('Logged Out');
+    this.isLogged = false
   }
 
   settings(){

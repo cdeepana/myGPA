@@ -32,7 +32,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark teal darken-4" [containerInside]="false">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#"><mdb-icon fas icon="award"></mdb-icon> myGPA</a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="navbar-brand" (click)="goHOme()"><mdb-icon fas icon="award"></mdb-icon> myGPA</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
@@ -45,7 +45,7 @@
       
 
       <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
+      <li *ngIf="isLogged" class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">

@@ -1,5 +1,6 @@
 
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { findOne } = require('../../model/Users');
 const User = require('../../model/Users')
 
 
@@ -12,14 +13,27 @@ function RegisterController(req,res) {
 
         console.log("registeere ==>", req.body);
 
-        newUser.save().then(data=>{
-                console.log("saved user data 4=>",data, "data._id", data._id);
-                const token = jwt.sign({ email: data.email }, process.env.refresh_token_secret,{expiresIn: '1h'})
-                
-                return res.status(201).send({UserID: data._id,token: token})
-        }).catch(err => {
-                return res.status(404).send({errormsg: 'User creation failed'+ err})
-        });
+
+        User.findOne({email:req.body.email}).then(
+                x=>{
+                        if(!x){
+                                newUser.save().then(data=>{
+                                        console.log("saved user data 4=>",data, "data._id", data._id);
+                                        const token = jwt.sign({ email: data.email }, process.env.refresh_token_secret,{expiresIn: '1h'})
+                                        
+                                        return res.status(201).send({UserID: data._id,token: token})
+                                }).catch(err => {
+                                        console.log("user creation fail",err);
+                                        return res.status(404).send({errormsg: 'User creation failed'+ err})
+                                });
+                        }
+                        else{
+                                return res.status(406).send({errormsg: 'User email already exists'})
+                        }
+                }
+        )
+
+        
       
     }
 module.exports = RegisterController;

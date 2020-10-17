@@ -7,31 +7,34 @@
 
     <!-- <div class="container"> -->
       <div class="row">
-        <div class="col-3">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="semConfigRerun(null)">
+        <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 W50">
+          <!-- <div class="col-3 W50"> -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="semConfigRerun(null)" style="margin-bottom: 10px;">
             <mdb-icon fas icon="plus-circle"></mdb-icon> create a semester 
           </button>
         </div>
 
-        <div class="col-4">
+        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 W20">
+          <!-- <div class="col-3 W20"> -->
           <div class="card text-white bg-primary " style="max-width: 20rem;">
             <!-- <div class="card-header">Overall-GPA :  {{ OverallGPA}}</div> -->
 
             <mdb-card cascade="true" wider="true">
               <div class="view view-cascade gradient-card-header aqua-gradient">
-                <h2 class="card-header-title mb-12">Overall-GPA :  {{ OverallGPA}}</h2>
+                <h2 class="card-header-title mb-12 responsiveTest">Overall-GPA :  {{ OverallGPA}}</h2>
               </div>
             </mdb-card>
             
           </div>
         </div>
-        <div class="col-5">
+        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 W30">
+          <!-- <div class="col-3 W30"> -->
           <div class="card text-white bg-primary " style="max-width: 95%;">
             <!-- <div class="card-header">Awarded Classes: {{awardedClass}}</div> -->
 
             <mdb-card cascade="true" wider="true">
               <div class="view view-cascade gradient-card-header aqua-gradient">
-                <h2 class="card-header-title mb-12">Awarded Classes: {{awardedClass}}</h2>
+                <h2 class="card-header-title mb-12 responsiveTest">Awarded Classes: {{awardedClass}}</h2>
               </div>
             </mdb-card>
             
