@@ -65,6 +65,7 @@ export class DashboardService {
     }
     public gatheringUsedID(ID){
       this.UserID = ID;
+      localStorage.setItem('Uid',this.UserID)
       // console.log("saved user id", this.UserID);
     }
 
