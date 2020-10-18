@@ -33,13 +33,13 @@ import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
-   declarations: [		
+   declarations: [			
       AppComponent,
       HomepageComponent,
       LoginComponent,
       RegisterComponent,
       NavBarComponent,
-      AboutComponent
+      AboutComponent,
    ],
    imports: [
       // DashboardModule,

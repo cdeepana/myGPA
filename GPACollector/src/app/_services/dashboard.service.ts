@@ -24,14 +24,17 @@ export class DashboardService {
     }
 
     public onetimeConfig(form) {   // one time config form submission 
-      this.UserID = (!!this.UserID)? this.UserID : sessionStorage.getItem('Uid') 
+      this.UserID = (!!this.UserID)? this.UserID : localStorage.getItem('Uid') 
     //  console.log("form['Ctrl_D_plus']",form['Ctrl_D_plus']);
       localStorage.setItem('isDplus', (!form['Ctrl_D_plus']) ? 'false' : 'true')
-      sessionStorage.removeItem('Uid')
+      // localStorage.removeItem('Uid')
       return this.http.post(this.baseUrl + "/onetimeconfig", [form, { UserID: this.UserID}]).pipe()
     }
 
+
+
     public createOrUpdateSem(data) {   // one time config form submission 
+      // console.log("data create seem ",data);
       return this.http.post(this.baseUrl + "/createsem", [data, { UserID: this.UserID }]).pipe()
     }
 
@@ -40,11 +43,11 @@ export class DashboardService {
     }
 
     public getSems(){
-      this.UserID = (!!this.UserID)? this.UserID : sessionStorage.getItem('Uid') 
+      this.UserID = (!!this.UserID)? this.UserID : localStorage.getItem('Uid') 
       // console.log("getsem uID====>", this.UserID);
       let params = new HttpParams();
       params = params.append('UserID',  this.UserID );
-      sessionStorage.removeItem('Uid')
+      // localStorage.removeItem('Uid')
       return this.http.get(this.baseUrl + '/getsems',{params: params}).pipe()
     }
 
@@ -67,7 +70,13 @@ export class DashboardService {
 
     public unloadOccuring(){
       if(this.UserID){
-      sessionStorage.setItem('Uid',this.UserID)
+        localStorage.setItem('Uid',this.UserID)
       }
+    }
+    public getUser(){
+      // console.log("this.UserID",this.UserID);
+      let params = new HttpParams();
+      params = params.append('UserID', (!!this.UserID)? this.UserID : localStorage.getItem('Uid') );
+      return this.http.get(this.baseUrl + '/getUser', { params: params } ).pipe()
     }
 }

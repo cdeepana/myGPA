@@ -115,6 +115,11 @@ function semesterController(req,res) {
                     })
                 }
                 else if(x){
+
+                    if(req.body[0].isSemConflict) {
+                      // console.log("sem conflicted 000000000000000000_++++++++++===========<",req.body[0].isSemConflict);
+                      return res.status(403).send({errormsg:'semester already exists, Try for another semester'})
+                    }
                     x.semInfo[0] = req.body[0].subS
                     x.semInfo[1] = quickStatus
                     x.markModified('semInfo');
@@ -124,7 +129,7 @@ function semesterController(req,res) {
                     }).
                     catch(err=> {
                         console.error(err);
-                        res.status(404).json({msg:"could not update sem info"+ err})
+                        res.status(404).json({errormsg:"could not update semester Try again"})
                     }  )
                 }
             }
@@ -144,11 +149,11 @@ function semesterController(req,res) {
 
     else if(req.method == 'GET'){
       if (!req.query.UserID) {
-        console.error("semester control req.query.UserID is not found");
+        // console.error("semester control req.query.UserID is not found");
       } else {
-        semester.find({userID:req.query.UserID}).then(
+        semester.find({userID:req.query.UserID}).sort({yearOfSem: 1, numberOfSem: 1}).then(
           x=>{
-              console.log(x)
+              // console.log("get method semester data  semInfo============>",JSON.stringify(x))
               if(x){ 
               return res.status(200).json({semesters: x})
               }
@@ -161,15 +166,13 @@ function semesterController(req,res) {
         
     }
     else if(req.method == 'DELETE'){
-      console.log("delete method ok", req.query, "req.query.userID",req.query.userID);
+      // console.log("delete method ok", req.query, "req.query.userID",req.query.userID);
       semester.findOneAndDelete({ userID: req.query.userID, yearOfSem : req.query.yearOfSem, numberOfSem: req.query.numberOfSem}).then(responseData => {
-        console.log("findone response ========================>", responseData);
+        // console.log("findone response ========================>", responseData);
         return res.status(200).json({info: "Deleted sem"})
       }).catch(err =>{
         res.status(404).send('not sem found for deletion');
       });
     }
-    
-    
     }
 module.exports = semesterController;

@@ -31,6 +31,7 @@ export class AuthService {
   removeUserInfo(){
     localStorage.removeItem('token');
     localStorage.removeItem('isDplus');
+    localStorage.removeItem('Uid')
     return 0;
   }
 

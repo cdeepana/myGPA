@@ -52,10 +52,10 @@ export class OtcComponent implements OnInit {
     
   }
   OTCSubmit(){
-    console.log("otc completed", this.model);
+    // console.log("otc completed", this.model);
     this.dashboardService.onetimeConfig(this.model).subscribe(
       response => {
-        console.log("res", response)
+        // console.log("res", response)
         this.alertify.success("one time configuration successful")
         this.router.navigate(['dashboard/base'])
       },

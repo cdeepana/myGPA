@@ -19,6 +19,7 @@ import { SemesterConfigComponent } from './semester-Config/semester-Config.compo
 import { OtcComponent } from './otc/otc.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -28,7 +29,8 @@ import { SettingsComponent } from './settings/settings.component';
     BaseComponent,
     SemesterConfigComponent,
     OtcComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProfileComponent
   ],
   imports: [
     FormsModule,

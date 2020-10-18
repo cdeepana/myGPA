@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
@@ -8,19 +9,22 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 })
 export class SettingsComponent implements OnInit {
 
-  isOTC: boolean
+  isProfile: boolean
   
-  constructor(private alertify: AlertifyService) { 
-    this.isOTC= false
+  constructor(private alertify: AlertifyService, private route: Router) { 
+    this.isProfile = true;
   }
 
   ngOnInit() {
   }
 
   OTC(){
-    this.isOTC = true;
+    this.isProfile = false
+
   }
   getProfile(){
-    this.alertify.warning('account page is not completed')
+    this.isProfile = true
+    // this.route.navigate(['dashboard/profile'])
+    // this.alertify.warning('account page is not completed')
   }
 }

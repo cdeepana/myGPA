@@ -4,9 +4,9 @@ initializePassport();
 const one_timeConfig = require('../../model/onetimeConfig')
 
 function auth(type) {
-  console.log("type ==>",type);
+  // console.log("type ==>",type);
   if (type == "login") {   //    ========================   login functionality
-    console.log("login const");
+    // console.log("login const");
     return (req, res, next) => {
       passport.authenticate("login", (error, user, info) => {
         if (error) {
@@ -14,9 +14,9 @@ function auth(type) {
           return res.sendStatus(404);
           ;
       }
-      console.log("USER USER USER",user);
+      // console.log("USER USER USER",user);
       one_timeConfig.findOne({userID: user._id}).then(x => {
-        console.log("x",x);
+        // console.log("x",x);
         // console.log("x.D_plus",x[D_plus]);
 
         req.body.isDplus = !!x ? x.D_plus : false;  // otc mean one time config  

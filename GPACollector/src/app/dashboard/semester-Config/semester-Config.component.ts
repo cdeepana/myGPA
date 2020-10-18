@@ -106,11 +106,13 @@ export class SemesterConfigComponent implements OnInit {
 
     onSubmit(data){
         
+        // console.log("this.viewSubject for null value ==>",this.viewSubject);
         // console.log("dynamicForm",this.dynamicForm);
         // return;
         // data.numberOfSem = parseInt(data.numberOfSem.split('')[0]);
         data.yearOfSem = parseInt(data.yearOfSem);  
         data.numberOfSem = parseInt(data.numberOfSem); 
+        data.isSemConflict = (!!this.viewSubject) ? false : true
         // console.log("new sem form",data);
         // console.log("testing data002", data);
         this.dashboardService.createOrUpdateSem(data).subscribe(res=>{
@@ -121,9 +123,14 @@ export class SemesterConfigComponent implements OnInit {
         
         },
         error=>{
-            console.log("error",error)
+            if(error.status== 403){
+                this.alertify.error(error.error.errormsg);
+            }
+            else{
+            // console.log("error",error)
             this.route.navigate(['dashboard/settings'])
             this.alertify.error('Please Update Configuaraion First');
+            }
         })
     }
 

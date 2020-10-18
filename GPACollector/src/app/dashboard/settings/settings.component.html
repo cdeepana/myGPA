@@ -8,10 +8,15 @@
   </div>
 
   <div class="col-10">
-    <div *ngIf="isOTC">
+    <div *ngIf="!isProfile">
       
     <app-otc></app-otc>
     </div>
+    <div *ngIf="isProfile">
+      
+      <app-profile></app-profile>
+      </div>
   </div>
+
 </div> 
 

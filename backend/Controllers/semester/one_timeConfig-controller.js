@@ -10,7 +10,7 @@ function one_timeConfigController(req,res) {
         if(req.method == 'POST'){
                 var newConfig = new one_timeConfig();
 
-        console.log("dplus",req.body[0].Ctrl_D_plus);
+        // console.log("dplus",req.body[0].Ctrl_D_plus);
         newConfig.userID = req.body[1].UserID
         newConfig.A_plus = req.body[0].Ctrl_A_plus
         newConfig.A = req.body[0].Ctrl_A
@@ -38,10 +38,10 @@ function one_timeConfigController(req,res) {
         one_timeConfig.findOne({userID:req.body[1].UserID}).then(
                 
                x=>{
-                console.log("one time", x)
+                // console.log("one time", x)
                        if(!x){
                         newConfig.save().then(data =>{
-                                console.log("data =>",data)
+                                // console.log("data =>",data)
                         return res.json({msg: "OK"});
                 
                         }).catch(err => {
@@ -75,7 +75,7 @@ function one_timeConfigController(req,res) {
                         x.class_pass_min = req.body[0].Ctrl_PassMin
                         x.class_pass_max = req.body[0].Ctrl_PassMax
                         x.save().then(data =>{
-                                console.log("data =>",data)
+                                // console.log("data =>",data)
                                 res.json({msg: "OK"});
                         }).catch(err => {
                                 res.status(404).send({errormsg: 'edit one time config failed'+ err});
@@ -94,7 +94,7 @@ function one_timeConfigController(req,res) {
         }
         if(req.method == 'GET'){
 
-                console.log("req.query", req.query.UserID);
+                // console.log("req.query", req.query.UserID);
                 
                 one_timeConfig.findOne({userID: req.query.UserID},('class_F_min class_SU_min class_SU_max class_SL_min class_SL_max class_pass_min class_pass_max')).then(
                         x=>{

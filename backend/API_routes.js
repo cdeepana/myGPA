@@ -16,6 +16,7 @@ function routeinitialize(app) {
     app.post('/createsem',semester )
     app.delete('/deletesem',semester )
     app.get('/getsems',semester)
+    app.get('/getUser',register)
 }
 
 module.exports = routeinitialize;
