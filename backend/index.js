@@ -30,9 +30,9 @@ mongoose.connection.once('open' ,()=> {
 
 
 app.use(function(req, res, next) {
-    // res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
     // res.header("Access-Control-Allow-Origin", "http://192.168.1.102:8080");
-    res.header("Access-Control-Allow-Origin", "http://104.43.130.29:8080");
+    // res.header("Access-Control-Allow-Origin", "http://104.43.130.29:8080");
     // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept","Authorization");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     req.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
