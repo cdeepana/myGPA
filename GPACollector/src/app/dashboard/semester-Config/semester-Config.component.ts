@@ -25,15 +25,19 @@ export class SemesterConfigComponent implements OnInit {
   isDplus: boolean;
   viewSubject : any
 
-  constructor(private formBuilder: FormBuilder,private dashboardService: DashboardService,
-    private eventEmitterService: Event_emitterCustomService, private alertify: AlertifyService, private route: Router) { }
+  constructor(private eventEmitterService: Event_emitterCustomService,
+            private formBuilder: FormBuilder,
+            private dashboardService: DashboardService,
+            private alertify: AlertifyService, 
+            private route: Router) { }
 
     ngOnInit() {
 
         if (this.eventEmitterService.subVar == undefined) {
             this.eventEmitterService.subVar = this.eventEmitterService.
-            invokeSemesterConfigComponentFunction.subscribe((viewSubject: Object) => {
-                    this.viewSubject = viewSubject? viewSubject: null
+            invokeSemesterConfigComponentFunction.subscribe((viewSubject:any) => {
+                // console.log("sem pop up",viewSubject);
+                    this.viewSubject = viewSubject;
                     this.dynamicFormCreation();
                 });
         }
@@ -62,14 +66,13 @@ export class SemesterConfigComponent implements OnInit {
                 numberOfSem: [this.viewSubject.numberOfSem, Validators.required],
                 subS: new FormArray([])
             });
+            
             this.testing(this.viewSubject);
         }
-
-
-
     }
 
     // convenience getters for easy access to form fields
+    
     get f() { return this.dynamicForm.controls; }
     get t() { return this.f.subS as FormArray; }
 
@@ -77,11 +80,13 @@ export class SemesterConfigComponent implements OnInit {
        this.numberOfSubjects += (istrue) ? 1:-1;
         if (this.t.length < this.numberOfSubjects) {
             for (let i = this.t.length; i < this.numberOfSubjects; i++) {
+                // console.log("inside for loop",i);
                 this.t.push(this.formBuilder.group({
                     name: [(updateValues)? updateValues.name: '', Validators.required],
                     credit: [(updateValues)? updateValues.credit:'', Validators.required],
                     subjectGrade: [(updateValues)? updateValues.subjectGrade:'']
                 }));
+                // console.log("t =>",this.t);
             }
         } else {
             for (let i = this.t.length; i >= this.numberOfSubjects; i--) {
@@ -92,34 +97,24 @@ export class SemesterConfigComponent implements OnInit {
 
     onReset() {
         // reset whole form back to initial state
-        this.submitted = false;
         this.dynamicForm.reset();
         this.t.clear();
         this.numberOfSubjects=1;
     }
 
-    onClear() {
-        // clear errors and reset ticket fields
-        this.submitted = false;
-        this.t.reset();
-    }
-
     onSubmit(data){
-        
-        // console.log("this.viewSubject for null value ==>",this.viewSubject);
-        // console.log("dynamicForm",this.dynamicForm);
-        // return;
-        // data.numberOfSem = parseInt(data.numberOfSem.split('')[0]);
         data.yearOfSem = parseInt(data.yearOfSem);  
         data.numberOfSem = parseInt(data.numberOfSem); 
-        data.isSemConflict = (!!this.viewSubject) ? false : true
-        // console.log("new sem form",data);
-        // console.log("testing data002", data);
+        data.isSemConflict = (this.viewSubject) ? false : true
         this.dashboardService.createOrUpdateSem(data).subscribe(res=>{
             
-        this.alertify.success('Successfully updated Semester');
+            if (this.viewSubject) {
+                this.alertify.success('Successfully updated Semester');
+            } else {
+                this.alertify.success('Successfully created Semester');
+            }
+            this.t.reset();  // clear the fields and reset safely
             this.cancelRegister.emit();
-            // window.location.reload()
         
         },
         error=>{
@@ -135,13 +130,12 @@ export class SemesterConfigComponent implements OnInit {
     }
 
     testing(data){
-        // console.log("teesting event pass binding",data);
-        // console.log("length of subject array",data.semInfo[0].length);
-        data.semInfo[0].forEach((element,index) => {
-            // console.log("elemtn",index,element);
-            this.addSubject(true,element);
-        });
-        // this.addSubject(true);
+        // console.log("testing function",data);
+        setTimeout(() => {
+            data.semInfo[0].forEach((element) => {
+                this.addSubject(true,element);
+            });
+        }, 500);
     }
 
 }
