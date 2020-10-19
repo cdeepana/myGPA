@@ -26,6 +26,10 @@ export class NavBarComponent implements OnInit {
 
   gohome(){
     if (this.isLogged) {
+      
+      if(window.location.pathname!='/dashboard/base'){
+        window.location.reload()
+      }
       this.route.navigate(['dashboard/base'])
     }
     else{

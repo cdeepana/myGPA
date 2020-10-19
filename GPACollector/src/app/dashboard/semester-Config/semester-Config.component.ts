@@ -131,11 +131,9 @@ export class SemesterConfigComponent implements OnInit {
 
     testing(data){
         // console.log("testing function",data);
-        setTimeout(() => {
-            data.semInfo[0].forEach((element) => {
-                this.addSubject(true,element);
-            });
-        }, 500);
+        data.semInfo[0].forEach((element) => {
+            this.addSubject(true,element);
+        });
     }
 
 }
