@@ -13,7 +13,7 @@ function AutheticationController(req,res) {
         // console.log("token    ....=>",Token);
         // var decoded = jwt.verify(Token,process.env.refresh_token_secret);
         //             console.log(decoded);
-        res.json({auth:true});
+        return res.json({auth:true});
     }
 
 

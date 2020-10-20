@@ -20,6 +20,7 @@ app.use(passport.session());
 
 
 mongoose.connect('mongodb://localhost:27017/mygpa',{ useNewUrlParser: true,  useUnifiedTopology: true  });
+mongoose.set('useCreateIndex', true);
 
 mongoose.connection.once('open' ,()=> {
       console.log("connection was established");

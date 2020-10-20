@@ -25,6 +25,9 @@ function auth(type) {
           if (error) return next(error);
           next();
         });
+      }).catch((err) => {
+        console.log(err);
+        return res.status(404).send("error one_timeConfig with UID not found");
       })
 
        // req modified with collection object id and finally it will return to front end in next js file
@@ -36,7 +39,7 @@ function auth(type) {
     };
   }
 
-  if (!type) {         // ===============================    authentication functionality
+  else{         // ===============================    authentication functionality
     return (req, res, next) => {
       passport.authenticate(
         "authenticate",
@@ -48,7 +51,7 @@ function auth(type) {
           // console.log("user->", user);
           // console.log("info->", info);
           if(user == false){
-            res.json({auth: false});
+            return  res.status(404).json({auth: false});
           }
           next();
         }

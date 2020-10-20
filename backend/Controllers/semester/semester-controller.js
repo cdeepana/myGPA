@@ -114,10 +114,9 @@ function semesterController(req,res) {
                         return res.status(404).send({errormsg: 'one time' + err})
                     })
                 }
-                else if(x){
+                else{
 
                     if(req.body[0].isSemConflict) {
-                      // console.log("sem conflicted 000000000000000000_++++++++++===========<",req.body[0].isSemConflict);
                       return res.status(403).send({errormsg:'semester already exists, Try for another semester'})
                     }
                     x.semInfo[0] = req.body[0].subS
@@ -129,7 +128,7 @@ function semesterController(req,res) {
                     }).
                     catch(err=> {
                         console.error(err);
-                        res.status(404).json({errormsg:"could not update semester Try again"})
+                        return res.status(404).json({errormsg:"could not update semester Try again"})
                     }  )
                 }
             }
@@ -137,10 +136,13 @@ function semesterController(req,res) {
 
           } else {
             // return res.status(404).json({OTC:false})
-            res.status(404).json({ msg: "could not update sem info error occured " + err });
             console.log("error occured in OTC collection finding issue check semester-controller 'one_timeConfig.findOne'",err);
+            return res.status(404).json({ msg: "could not update sem info error occured " + err });
           }
-        });
+        }).catch(err =>{
+          console.log("error one_timeConfig find",err);
+          return res.status(404).send('one_timeConfig not found');
+          });
 
 
 
@@ -150,18 +152,23 @@ function semesterController(req,res) {
     else if(req.method == 'GET'){
       if (!req.query.UserID) {
         // console.error("semester control req.query.UserID is not found");
+        return res.status(404).send("user ID not registered. Login first")
       } else {
-        semester.find({userID:req.query.UserID}).sort({yearOfSem: 1, numberOfSem: 1}).then(
-          x=>{
-              // console.log("get method semester data  semInfo============>",JSON.stringify(x))
-              if(x){ 
-              return res.status(200).json({semesters: x})
-              }
-              else{
-                 return res.status(404).json({msg: 'no data'})
-              }
-          }
-      )
+        semester
+          .find({ userID: req.query.UserID })
+          .sort({ yearOfSem: 1, numberOfSem: 1 })
+          .then((x) => {
+            // console.log("get method semester data  semInfo============>",JSON.stringify(x))
+            if (x) {
+              return res.status(200).json({ semesters: x });
+            } else {
+              return res.status(404).json({ msg: "no data" });
+            }
+          })
+          .catch((err) => {
+            console.log("error sem data retrieval", err);
+            return res.status(404).send("error sem data retrieval");
+          });
       }
         
     }
@@ -171,7 +178,7 @@ function semesterController(req,res) {
         // console.log("findone response ========================>", responseData);
         return res.status(200).json({info: "Deleted sem"})
       }).catch(err =>{
-        res.status(404).send('not sem found for deletion');
+        return res.status(404).send('not sem found for deletion');
       });
     }
     }

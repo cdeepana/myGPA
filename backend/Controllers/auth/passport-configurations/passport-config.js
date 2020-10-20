@@ -23,7 +23,11 @@ function initialize() {
       else{
         return done("unauthorized access", false);
       }
-    });
+    }).catch(
+      err => {
+        return done("unauthorized access", false);
+      }
+    )
     // console.log("test out", username, password);
 
   
@@ -44,15 +48,15 @@ function initialize() {
     {
       // console.log("authentic test",opts); 
       // console.log("jwt_payload===>", jwt_payload);
-      done(null, jwt_payload);
+      return done(null, jwt_payload);
     })
   );
 
   passport.serializeUser(function (user, done) {
-    if (user) done(null, user);
+    if (user) return done(null, user);
   });
   passport.deserializeUser(function (id, done) {
-    done(null, id);
+     return done(null, id);
   });
 }
 

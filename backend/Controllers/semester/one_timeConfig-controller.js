@@ -1,6 +1,7 @@
 
 const { query } = require('express');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { ObjectID } = require('mongodb');
 const one_timeConfig = require('../../model/onetimeConfig')
 const semester = require('../../model/semester');
 
@@ -11,7 +12,7 @@ function one_timeConfigController(req,res) {
                 var newConfig = new one_timeConfig();
 
         // console.log("dplus",req.body[0].Ctrl_D_plus);
-        newConfig.userID = req.body[1].UserID
+        newConfig.userID = ObjectID(req.body[1].UserID)
         newConfig.A_plus = req.body[0].Ctrl_A_plus
         newConfig.A = req.body[0].Ctrl_A
         newConfig.A_minus = req.body[0].Ctrl_A_minus
@@ -34,11 +35,9 @@ function one_timeConfigController(req,res) {
         newConfig.class_pass_min = req.body[0].Ctrl_PassMin
         newConfig.class_pass_max = req.body[0].Ctrl_PassMax
 
-   
         one_timeConfig.findOne({userID:req.body[1].UserID}).then(
                 
                x=>{
-                // console.log("one time", x)
                        if(!x){
                         newConfig.save().then(data =>{
                                 // console.log("data =>",data)
@@ -52,7 +51,6 @@ function one_timeConfigController(req,res) {
 
                         semester.deleteMany({ userID: req.body[1].UserID}).then(response => {
 
-                        x.userID = req.body[1].UserID
                         x.A_plus = req.body[0].Ctrl_A_plus
                         x.A = req.body[0].Ctrl_A
                         x.A_minus = req.body[0].Ctrl_A_minus
@@ -76,16 +74,16 @@ function one_timeConfigController(req,res) {
                         x.class_pass_max = req.body[0].Ctrl_PassMax
                         x.save().then(data =>{
                                 // console.log("data =>",data)
-                                res.json({msg: "OK"});
+                                 return res.json({msg: "OK"});
                         }).catch(err => {
-                                res.status(404).send({errormsg: 'edit one time config failed'+ err});
+                                return res.status(404).send({errormsg: 'edit one time config failed'+ err});
                         })
 
-                                return;
+                               
 
                         }).catch(err =>{
                                       console.log("error deletion all sem",err);
-                                res.status(404).send('not sem found for deletion');
+                                return res.status(404).send('not sem found for deletion');
                         });
                        }
                }
