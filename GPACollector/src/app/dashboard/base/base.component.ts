@@ -18,8 +18,6 @@ export class BaseComponent implements OnInit {
   OverallGPA: String;
   awardedClass: String;
 
-
-//  start round
   chartType: string = 'doughnut';
 
   chartDatasets: Array<any> = [];
@@ -37,21 +35,11 @@ export class BaseComponent implements OnInit {
     responsive: true
   };
 
-  // finished
-
-
-  constructor(private dashboardService: DashboardService, private eventEmitterService : Event_emitterCustomService, private navbarRefreshService: Event_emitterNavbarService, private route: Router ,private alertify: AlertifyService) {
-
-    
-   }
-
-   chartClicked(event:any){
-
-   }
+  constructor(private dashboardService: DashboardService, private eventEmitterService : Event_emitterCustomService, private navbarRefreshService: Event_emitterNavbarService, private route: Router ,private alertify: AlertifyService) {}
+   chartClicked(event:any){}
    chartHovered(event:any){}
 
   ngOnInit() {
-    // window.location.reload()
     this.navbarRefreshService.onNavBarReRun()
     this.getSemDetails()
   }
@@ -68,7 +56,6 @@ export class BaseComponent implements OnInit {
       // console.log("data get sem", this.semDetails);
       this.chartDatasets = []
       return this.chartDataSetCreation();
-    
     },error=>{
       return console.log(error);
     })
@@ -76,13 +63,11 @@ export class BaseComponent implements OnInit {
 
   chartDataSetCreation(){
     this.semDetails.forEach(element => {
-      // element.semInfo[1].Good
       this.chartDatasets.push([{data: [element.semInfo[1].Good, element.semInfo[1].Medium, element.semInfo[1].Weak] }])
       // console.log("this cart", this.chartDatasets);
     });
     return this.getOnetimeConfig();
   }
-
 
   viewSem(viewNUmber){
     this.viewSubject = this.semDetails[viewNUmber]
@@ -117,7 +102,6 @@ export class BaseComponent implements OnInit {
     this.OverallGPA = (x/y).toFixed(4)
     clzValue = x/y
    
-
     if(clzValue >= OTC.class_F_min){
       this.awardedClass = "First Class"
     }
@@ -150,8 +134,10 @@ export class BaseComponent implements OnInit {
     // console.log("delete sem is ",this.viewSubject);
     this.dashboardService.deleteASem({userID: this.viewSubject.userID, numberOfSem: this.viewSubject.numberOfSem, yearOfSem: this.viewSubject.yearOfSem}).subscribe(data=>{
       // console.log(data);
+      this.alertify.success('Successfully deleted')
       this.getSemDetails()
     },error=>{
+      this.alertify.error('Deletion unsuccessful')
       console.log("error delete sem", error);
     })
   }

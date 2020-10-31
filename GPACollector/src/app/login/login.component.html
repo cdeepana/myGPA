@@ -1,41 +1,43 @@
 <div class="container">
-  
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
 
-  <button (click)="onNoClick()" type="button" class="close" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <!-- <h1 id="text-align"><span class="badge badge-secondary">Sign In</span></h1> -->
-  <h1 id="text-align"><span >Log In</span></h1>
-  
-  <div class="stypeLogin">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
 
-    <div class=" form-group">
-      <span class="col-12">
-        <input class="slide-up form-control" id="email"  placeholder="enter email" id="email" type="email" formControlName="email"/>
-        <label for="email">Email</label>
-      </span>
+    <button (click)="onNoClick()" type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h1 id="text-align"><span>Log In</span></h1>
+
+    <div class="stypeLogin">
+
+      <div class=" form-group">
+        <span class="col-12">
+          <input class="slide-up form-control" id="email" placeholder="enter email" id="email" type="email"
+            formControlName="email" />
+          <label for="email">Email</label>
+        </span>
+      </div>
+
+      <div class=" form-group">
+        <span class="col-12">
+          <input class="slide-up form-control" id="security" placeholder="enter password" id="password" type="password"
+            formControlName="password" />
+          <label for="card">Password</label>
+        </span>
+      </div>
+
     </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="paddingup">
+          <p>Don't have an account
+            <a href="javascript:void(0);" (click)="registerUser()">Register</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-6" style="text-align: end;">
+        <button text-right class="btn btn-primary" type="submit">Login</button>
 
-    <div class=" form-group">
-      <span class="col-12">
-        <input class="slide-up form-control" id="security"  placeholder="enter password" id="password" type="password" formControlName="password"/>
-        <label for="card">Password</label>
-      </span>
+      </div>
     </div>
-  
-
-  </div>
- <div class="row">
-  <div class="col-6">
-    <div class="paddingup"><p>Don't have an account
-    <a href="javascript:void(0);"   (click)="registerUser()">Register</a>
-    </p></div>
-  </div> 
-  <div class="col-6" style="text-align: end;">
-    <button text-right class="btn btn-primary" type="submit">Login</button>
-  
-</div>
- </div>
   </form>
 </div>

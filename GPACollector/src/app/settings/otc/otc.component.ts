@@ -16,7 +16,6 @@ export class OtcComponent implements OnInit {
   isDplus: boolean;
   isForm01: boolean;
   isOTCUpdate;
-  // model = new modelOTC(4.2, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.5, 1.3, 1.0, 0, 0, 3.7, 3.30, 3.69, 3.00, 3.29, 2.00, 2.99);
     model = new modelOTC(4.2, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.5, 1.3, 1.0, 0, 0, 3.7, 3.30, 3.69, 3.00, 3.29, 2.00, 2.99);
 
   constructor(private router : Router,private alertify: AlertifyService, private dashboardService: DashboardService , private authService : AuthService) { }

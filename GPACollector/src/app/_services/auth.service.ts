@@ -23,7 +23,7 @@ export class AuthService {
     let userData = localStorage.getItem('token')
     let Uid = localStorage.getItem('Uid')
     if((!!userData) && (!!Uid)){
-      return !this.jwtHelper.isTokenExpired(userData);
+       return !this.jwtHelper.isTokenExpired(userData);
     }
     return false;
   

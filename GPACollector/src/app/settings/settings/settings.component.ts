@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-settings',
@@ -11,7 +9,7 @@ export class SettingsComponent implements OnInit {
 
   isProfile: boolean
   
-  constructor(private alertify: AlertifyService, private route: Router) { 
+  constructor() { 
     this.isProfile = true;
   }
 
@@ -24,7 +22,5 @@ export class SettingsComponent implements OnInit {
   }
   getProfile(){
     this.isProfile = true
-    // this.route.navigate(['dashboard/profile'])
-    // this.alertify.warning('account page is not completed')
   }
 }

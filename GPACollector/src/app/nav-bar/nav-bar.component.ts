@@ -28,8 +28,6 @@ export class NavBarComponent implements OnInit {
     if (this.isLogged) {
       
       if(window.location.pathname!='/dashboard/base'){
-        // window.location.assign("dashboard/base")
-        
         this.route.navigate(['dashboard/base'])
         .then(
           ()=>{ 
@@ -55,7 +53,7 @@ export class NavBarComponent implements OnInit {
   }
 
   settings(){
-    this.route.navigate(['dashboard/settings'])
+    this.route.navigate(['settings/settings'])
   }
 
 }

@@ -1,23 +1,20 @@
-<!-- <body class="base-background"> -->
+
 <div class="jumbotron">
   <div class="lead">
     
 
     
 
-    <!-- <div class="container"> -->
+
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 W50">
-          <!-- <div class="col-3 W50"> -->
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="semConfigRerun(null)" style="margin-bottom: 10px;">
             <mdb-icon fas icon="plus-circle"></mdb-icon> create a semester 
           </button>
         </div>
 
         <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 W20">
-          <!-- <div class="col-3 W20"> -->
           <div class="card text-white bg-primary " style="max-width: 20rem;">
-            <!-- <div class="card-header">Overall-GPA :  {{ OverallGPA}}</div> -->
 
             <mdb-card cascade="true" wider="true">
               <div class="view view-cascade gradient-card-header aqua-gradient">
@@ -28,9 +25,7 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 W30">
-          <!-- <div class="col-3 W30"> -->
           <div class="card text-white bg-primary " style="max-width: 95%;">
-            <!-- <div class="card-header">Awarded Classes: {{awardedClass}}</div> -->
 
             <mdb-card cascade="true" wider="true">
               <div class="view view-cascade gradient-card-header aqua-gradient">
@@ -41,30 +36,8 @@
           </div>
         </div>
 
-
-        <!-- 222222222222222 -->
-
-        <!-- <div class="row">
-          <div class="col">
-            
-            <mdb-card cascade="true" wider="true">
-              <div class="view view-cascade gradient-card-header aqua-gradient">
-                <h2 class="card-header-title mb-2">Title of the news</h2>
-              </div>
-              <mdb-card-body cascade="true" class="text-center">
-                <mdb-card-text>
-                </mdb-card-text>
-              </mdb-card-body>
-            </mdb-card>
-          </div>
-        </div> -->
-
-        <!-- 222222222222222 -->
       </div>
      
-    <!-- </div> -->
-    <!-- <button (click)="getSemDetails()">get sem info</button> -->
-    <!-- <button (click)="getOnetimeConfig()">get one time config</button> -->
   </div>
 </div>
 <!-- Semester creation Modal -->
@@ -111,10 +84,7 @@
                <span> 
                  {{semDetails[i].semInfo[1]['sGpaView']}}</span>
                </div>
-              <!-- <li  class="list-group-item">Good    : <a id="good"> {{semDetails[i].semInfo[1]['Good']}}</a></li>
-              <li  class="list-group-item">Medium  : <a id="medium">{{semDetails[i].semInfo[1]['Medium']}}</a> </li>
-              <li  class="list-group-item">Weak    : <a id="weak">{{semDetails[i].semInfo[1]['Weak']}}</a> </li>
-              <li  class="list-group-item">sGPA    : <a >{{semDetails[i].semInfo[1]['sGpaView']}}</a> </li> -->
+
               <div>
                 <canvas mdbChart
                     [chartType]="chartType"
@@ -135,18 +105,6 @@
               <div class="col-5">
               </div>
 
-
-              <!-- <div class="card-header row"> -->
-                <!-- Subject count : {{semDetails[i].semInfo[0].length}}  -->
-                <!-- <span class="badge badge-dark">sGPA:</span> <span> 
-                  {{semDetails[i].semInfo[1]['sGpaView']}}</span>
-              </div> -->
-
-
-
-
-
-
               <div class="col-6">
                 <button (click)="viewSem(i)" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalLong">
                 <mdb-icon fas icon="ellipsis-v"></mdb-icon> more
@@ -162,26 +120,7 @@
     </div>
   </div>
   </div>
-<!--  start card view in base UI   -->
 
-
-
-<!--  2222222222222222222222222 -->
-<!-- 
-<div style="display: block ;width: 230px;height: 230px;">
-  <canvas mdbChart
-      [chartType]="chartType"
-      [datasets]="chartDatasets"
-      [labels]="chartLabels"
-      [colors]="chartColors"
-      [legend]="true"
-      (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)">
-     
-  </canvas>
-</div> -->
-
-<!-- 22222222222222222222222222222 -->
 
 <!--POP UP semester view Modal -->
 <div style="padding-top: 30px;" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -243,13 +182,7 @@
     </div>
   </div>
 </div>
-<!-- POP UP semester view -->
 
-<!-- POP UP DELETE semester modal -->
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button> -->
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal" id="deleteSemModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -273,21 +206,6 @@
     </div>
   </div>
 </div>
-<!-- Finished DELETE modal -->
-<!-- </body> -->
-
-<!-- <div *ngIf="viewSubject.yearOfSem==1"> 
-  <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>st</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
-</div>
-<div *ngIf="viewSubject.yearOfSem==2"> 
-  <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>nd</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
-</div>
-<div *ngIf="viewSubject.yearOfSem==3"> 
-  <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>rd</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
-</div>
-<div *ngIf="viewSubject.yearOfSem >=4"> 
-  <h3 class="modal-title" id="exampleModalLongTitle">{{viewSubject.yearOfSem}} <sup>th</sup> year | Semester {{viewSubject.yearOfSem}}</h3>
-</div> -->
 
 
 

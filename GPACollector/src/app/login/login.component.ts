@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { AlertifyService} from '../_services/alertify.service';
 
-
 export interface DialogData {
   animal: string;
   name: string;
@@ -29,16 +28,12 @@ export class LoginComponent {
       });
     }
 
-
-
-
     onNoClick(): void {
       this.dialogRef.close();
     }
   
     onSubmit(data){
       // console.log("loginform =>",data);
-     
       this.authService.validate(data.email, data.password)
       .subscribe((response) => {
         this.alertify.success('Logged in Success');

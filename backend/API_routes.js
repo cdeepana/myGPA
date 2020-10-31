@@ -9,14 +9,14 @@ const semester = require('./Controllers/semester/semester-controller')
 function routeinitialize(app) {
     app.get('/testApi',testApi)
     app.post('/login', auth('login'), login )
-    app.get('/test', auth(), authenticate )
+    app.get('/authenticate', auth(), authenticate )
     app.post('/register', register )
-    app.post('/onetimeconfig',one_timeConfig)
-    app.get('/getOTC', one_timeConfig)
-    app.post('/createsem',semester )
-    app.delete('/deletesem',semester )
-    app.get('/getsems',semester)
-    app.get('/getUser',register)
+    app.post('/onetimeconfig',auth(),one_timeConfig)
+    app.get('/getOTC', auth(),one_timeConfig)
+    app.post('/createsem', auth(),semester )
+    app.delete('/deletesem',auth(),semester )
+    app.get('/getsems',auth(), semester)
+    app.get('/getUser',auth(),register)
 }
 
 module.exports = routeinitialize;

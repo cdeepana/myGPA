@@ -13,9 +13,7 @@ export class DashboardService {
   UserID
   OTC: boolean
 
-  constructor(private http: HttpClient) {
-     
-  }
+  constructor(private http: HttpClient) {}
 
   baseUrl = environment.apiUrl;
 
@@ -27,7 +25,6 @@ export class DashboardService {
       this.UserID = (!!this.UserID)? this.UserID : localStorage.getItem('Uid') 
     //  console.log("form['Ctrl_D_plus']",form['Ctrl_D_plus']);
       localStorage.setItem('isDplus', (!form['Ctrl_D_plus']) ? 'false' : 'true')
-      // localStorage.removeItem('Uid')
       return this.http.post(this.baseUrl + "/onetimeconfig", [form, { UserID: this.UserID}]).pipe()
     }
 
@@ -47,7 +44,6 @@ export class DashboardService {
       // console.log("getsem uID====>", this.UserID);
       let params = new HttpParams();
       params = params.append('UserID',  this.UserID );
-      // localStorage.removeItem('Uid')
       return this.http.get(this.baseUrl + '/getsems',{params: params}).pipe()
     }
 
