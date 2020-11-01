@@ -38,7 +38,7 @@ export class RegisterComponent {
         this.alertify.success('Registration Success');
         this.authService.setUserInfo(response['token']);
         this.dialogRef.close();
-        this.router.navigate(['dashboard/initialization']);
+        this.router.navigate(['settings/initialization']);
   
       },error=>{
           // console.log("error rees",error.error[Object.keys(error.error)[0]]);  // this would be needed future

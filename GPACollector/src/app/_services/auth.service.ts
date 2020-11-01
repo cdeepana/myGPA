@@ -52,7 +52,7 @@ export class AuthService {
         this.dashboard.gatheringUsedID(res['UserID']);
          localStorage.setItem('isDplus', (!res['isDplus'] )? 'false' : 'true' )
          if(res['isDplus']===false){
-         this.route.navigate(['dashboard/initialization'])
+         this.route.navigate(['settings/initialization'])
          }
          else{
           this.route.navigate(['dashboard/base'])
